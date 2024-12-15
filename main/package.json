@@ -1,0 +1,82 @@
+{
+  "name": "main",
+  "version": "0.1.0",
+  "private": true,
+  "productName": "FunkyAutoPlanner",
+  "main": "public/electron.js",
+  "homepage": "./",
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.122",
+    "@types/react": "^18.3.16",
+    "@types/react-dom": "^18.3.5",
+    "fsevents": "^2.3.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "new-version": "npm version --git-tag-version=false",
+    "version": "echo 'starting postversion script'",
+    "postversion": "LAST_VERSION=$(npm pkg get version | sed 's/\"//g')$REACT_APP_ENV_UPDATE_CHANNEL_SUFFIX && echo $LAST_VERSION && sed -i.bak \"s/\\\"version\\\": \\\"[0-9]\\.[0-9]\\.[0-9]\\\"/\\\"version\\\": \\\"$LAST_VERSION\\\"/g\" package.json",
+    "start": "export BROWSER=none && react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "start-electron": "export ELECTRON_START_URL=http://localhost:3000 && electron .",
+    "package": "electron-builder build --mac --win -c.extraMetadata.main=build/electron.js --publish never",
+    "publish": "electron-builder build --mac --win --publish always",
+    "postinstall": "sed 's/^#include .nan_scriptorigin\\.h./\\/\\/ #include nan_scriptorigin.h/' ./node_modules/nan/nan.h > ./node_modules/nan/nan.h.new && mv ./node_modules/nan/nan.h.new ./node_modules/nan/nan.h"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "electron": "32.1.2",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    
+    "mac": {
+      "publish": {
+        "provider": "github",
+        "owner": "Team846",
+        "repo": "FunkyAutoPlanner",
+        "private": true,
+        "token": ""
+      },
+      "target": {
+        "target": "default",
+        "arch": [
+          "arm64"
+        ]
+      }
+    },
+    "files": [ "build", "*.js", "public"],
+    "publish": {
+      "provider": "github",
+      "private": true,
+      "owner": "Team846"
+    }
+  }
+}
