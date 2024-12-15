@@ -5,8 +5,6 @@ import AutoPlanner from './AutoPlanner/AutoPlanner';
 import PageChooser from './PageChooser/PageChooser';
 
 function App() {
-
-  console.log("hi");
   const [onPath, setOnPath] = React.useState(false);
   return (
     <div className="App">

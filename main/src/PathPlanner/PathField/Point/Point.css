@@ -1,0 +1,7 @@
+.Point{
+    background: #e7ee23;
+    border-radius: 100vw;
+    height: .6vw;
+    width: .6vw;
+    position:absolute;
+}

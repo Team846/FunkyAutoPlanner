@@ -1,9 +1,11 @@
+import "./Point.css"
 
-function Point() {
+function Point({x, y} : {x:number, y:number}) {
     return (
-      <div className="Point">
-        <header className="Point-header">Point
-        </header>
+      <div className="Point"                 
+      style={{
+        left: `${x}%`,
+        top: `${y}%`}}>
       </div>
     );
   }

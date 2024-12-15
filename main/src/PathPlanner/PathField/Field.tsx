@@ -1,9 +1,17 @@
+import "./Field.css"
+import Point from "./Point/Point";
 
 function Field() {
+
+
+    const handleFieldClick =() => {
+        //Add func. that adds points on the location you clicked
+    }
+
     return (
       <div className="Field">
-        <header className="Field-header">Field
-        </header>
+        <Point x={100} y={100}/>
+        <img onClick={handleFieldClick} id="FieldImg" src="/field.png"/>
       </div>
     );
   }
