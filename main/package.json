@@ -13,7 +13,6 @@
     "@types/node": "^16.18.122",
     "@types/react": "^18.3.16",
     "@types/react-dom": "^18.3.5",
-    "fsevents": "^2.3.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-scripts": "5.0.1",
@@ -30,8 +29,7 @@
     "eject": "react-scripts eject",
     "start-electron": "export ELECTRON_START_URL=http://localhost:3000 && electron .",
     "package": "electron-builder build --mac --win -c.extraMetadata.main=build/electron.js --publish never",
-    "publish": "electron-builder build --mac --win --publish always",
-    "postinstall": "sed 's/^#include .nan_scriptorigin\\.h./\\/\\/ #include nan_scriptorigin.h/' ./node_modules/nan/nan.h > ./node_modules/nan/nan.h.new && mv ./node_modules/nan/nan.h.new ./node_modules/nan/nan.h"
+    "publish": "electron-builder build --mac --win --publish always"
   },
   "eslintConfig": {
     "extends": [
@@ -56,7 +54,6 @@
     "electron-builder": "^25.1.8"
   },
   "build": {
-    
     "mac": {
       "publish": {
         "provider": "github",
@@ -72,7 +69,18 @@
         ]
       }
     },
-    "files": [ "build", "*.js", "public"],
+    "win": {
+      "publish": {
+        "provider": "github",
+        "owner": "Team846",
+        "repo": "FunkyAutoPlanner"
+      }
+    },
+    "files": [
+      "build",
+      "*.js",
+      "public"
+    ],
     "publish": {
       "provider": "github",
       "private": true,
