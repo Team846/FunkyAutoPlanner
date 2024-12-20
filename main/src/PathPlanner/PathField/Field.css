@@ -4,6 +4,8 @@
 
 .Field{
     width: 80vw;
-    margin: 0 auto;
-    position:relative
+    height: 28.6vh; 
+    margin-left: 10vw;
+    margin-right: 10vw;
+    position:absolute
 }
