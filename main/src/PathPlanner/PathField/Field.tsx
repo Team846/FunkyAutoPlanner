@@ -2,9 +2,8 @@ import "./Field.css"
 import Point from "./Point/Point";
 import React, { useState } from "react";
 
-function Field() {
 
-  class PointToBeMade{
+export class PointToBeMade{
     constructor(x: number, y:number) {
           this.TopLeftX = 10;
           this.TopLeftY = 0;
@@ -27,7 +26,7 @@ function Field() {
       UnitConversionY: number;
   };
 
-
+function Field() {
     const handleFieldClick =(e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
         //Func. that adds points on the location you clicked
         var p = new PointToBeMade((e.clientX), (e.clientY));
