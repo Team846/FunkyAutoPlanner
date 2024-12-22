@@ -1,0 +1,18 @@
+.PointAdder{
+    display: inline-flex;
+    margin: 10px;
+    /* position: absolute; */
+    align-items: center;
+}
+.label{
+    margin-left:2vw;
+    margin-right:2vw;
+}
+
+.adder{
+    margin-left:2vw;
+    margin-right:2vw;
+    border-radius: 1000vw;
+    background-color: grey;
+    padding: 3%;
+}

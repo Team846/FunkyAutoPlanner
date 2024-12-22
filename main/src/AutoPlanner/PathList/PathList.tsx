@@ -1,8 +1,16 @@
+import { Dispatch, SetStateAction } from "react";
+import Path from "../PathList/Path/Path";
+import "./PathList.css"
 
-function PathList() {
+function PathList({Pathlist, auto, setAuto} : {Pathlist: (string | number[][])[][], auto:((string | number)[] | number[][])[], setAuto: Dispatch<SetStateAction<((string | number)[] | number[][])[]>>}) {
+
     return (
       <div className="PathList">
-        <header className="Path-List-header">PathList
+        <header className="Path-list-header">PathList
+            {Pathlist.map((value, index) => {
+                return(<Path path={value} auto={auto} setAuto={setAuto}/>)
+            })
+            }
         </header>
       </div>
     );
