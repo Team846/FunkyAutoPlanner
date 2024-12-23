@@ -5,25 +5,15 @@ import React, { useState } from "react";
 
 export class PointToBeMade{
     constructor(x: number, y:number) {
-          this.TopLeftX = 10;
-          this.TopLeftY = 0;
-          this.BottomRightX = 90;
-          this.BottomRightY = 28.6;
-          this.UnitConversionX = 100/(this.BottomRightX - this.TopLeftX);
-          this.UnitConversionY = 100/(this.BottomRightY - this.TopLeftY);
           x = 100 * x / window.innerWidth;
           y = 100 * (y-56) / window.innerHeight;
-          this.CordX = (x - this.TopLeftX) * this.UnitConversionX;
-          this.CordY = (y - this.TopLeftY) * this.UnitConversionY;
+          //Converts the position of the mouse into terms of vw and vh
+          this.CordX = (x - 10) * 1.25;
+          this.CordY = y * 3.5;
+          //Converts position of the mouse into percetages relative to the field
     }
       CordX: number;
       CordY: number;
-      TopLeftX: number;
-      TopLeftY: number;
-      BottomRightX: number;
-      BottomRightY: number;
-      UnitConversionX: number;
-      UnitConversionY: number;
   };
 
 function Field() {
@@ -46,6 +36,7 @@ function Field() {
          handleFieldClick(e)
        }} id="FieldImg" src="/field.png"/>
        <ul>{listOfPointsItems}</ul>
+       <Point x={50} y={50}/>
       </div>
     );
   }
