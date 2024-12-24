@@ -1,24 +1,17 @@
+import { Dispatch, SetStateAction } from "react";
+import Path from "../PathList/Path/Path";
+import "./PathList.css"
 
-const PATH_NAMES = [
-  {name: 'Two Piece Path'},
-  {name: 'Two Piece Path'},
-  {name: 'Two Piece Path'},
-  {name: 'Two Piece Path'},
-]
-function PathList() {
+function PathList({Pathlist, auto, setAuto} : {Pathlist: (string | number[][])[][], auto:((string | number)[] | number[][])[], setAuto: Dispatch<SetStateAction<((string | number)[] | number[][])[]>>}) {
+
     return (
       <div className="PathList">
-        <header className="Path-List-header">All Paths</header>
-        <div style={{display: 'flex', flexDirection: 'column'}}>
-          {PATH_NAMES.map((v, i) => {
-            return (
-              <button>
-                <span>{v.name}</span>
-                <span>:</span>
-              </button>
-            )
-          })}
-        </div>
+        <header className="Path-list-header">PathList
+            {Pathlist.map((value, index) => {
+                return(<Path path={value} auto={auto} setAuto={setAuto}/>)
+            })
+            }
+        </header>
       </div>
     );
   }

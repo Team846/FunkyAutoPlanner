@@ -1,0 +1,66 @@
+.PointAdder{
+    display: inline-flex;
+    margin: 10px;
+    /* position: absolute; */
+    align-items: center;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    flex-direction: column;
+}
+.label{
+    /* margin-left:2vw;
+    margin-right:2vw; */
+    align-items: start;
+}
+
+.adder{
+    margin-left:2vw;
+    margin-right:2vw;
+    border-radius: 10000vw;
+    background-color: grey;
+    padding: 3%;
+    width: 1.5vw;
+}
+
+.x-input {
+    background: transparent;
+    border-radius: 2px;
+    border-color: gray;
+    padding-X: 10px;
+    padding-Y: 2px;
+    border-radius: 20vh;
+}
+
+.y-input {
+    background: transparent;
+    border-color: gray;
+    padding-X: 10px;
+    padding-Y: 2px;
+    border-radius: 20vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.add-comments {
+    background: transparent;
+    border-width: 2px;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.contain {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}

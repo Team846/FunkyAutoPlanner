@@ -1,0 +1,9 @@
+#FieldImg{
+    width: 80vw;
+}
+
+.Field{
+    width: 80vw;
+    margin: 0 auto;
+    position:relative
+}

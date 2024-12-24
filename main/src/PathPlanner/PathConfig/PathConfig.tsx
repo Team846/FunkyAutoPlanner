@@ -49,7 +49,7 @@ function PathConfig({onPath, setOnPath}:{onPath:boolean, setOnPath:Dispatch<SetS
           </div>
         </div>
         <div style={{ width: '20vw'}}>
-          <PathList />
+
         </div>
       </div>
     );

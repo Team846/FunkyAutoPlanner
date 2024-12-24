@@ -1,0 +1,42 @@
+.create-path {
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 50vw;
+    border-color: grey;
+    border: 2px;
+    color: grey;
+}
+
+.save-path {
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 50vw;
+    border-color: grey;
+    border-width: 2px;
+    color: grey
+}
+
+.path-name {
+     background: transparent;
+     border-width: 2px;
+     border-radius: 10px;
+     padding-top: 5px;
+     padding-bottom: 5px;
+     padding-right: 10px;
+     padding-left: 5px;
+}
+
+.path-creator {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

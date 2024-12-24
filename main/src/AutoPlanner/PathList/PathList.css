@@ -1,0 +1,9 @@
+.PathList{
+    background: hsl(0, 0%, 55%);
+    position: absolute;
+    padding: 1vw;
+    margin: 1vw;
+    border-radius: 2vw;
+    right: 10vw;
+    vertical-align: text-top;
+}
