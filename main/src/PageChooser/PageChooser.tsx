@@ -14,8 +14,8 @@ function PageChooser({onPath, setOnPath}:{onPath:boolean, setOnPath:Dispatch<Set
 
   return (
     <div className="PageChooser">
-      <div onClick={onPathClick}>Path</div>
-      <div onClick={onAutoClick}>Auto</div>
+      <button onClick={onPathClick}>Path</button>
+      <button onClick={onAutoClick}>Auto</button>
     </div>
   );
 }
