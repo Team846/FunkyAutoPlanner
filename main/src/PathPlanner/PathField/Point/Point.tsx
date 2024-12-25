@@ -9,7 +9,7 @@ function Point({x, y, bearing, onClick, index} : {x:number, y:number, bearing:nu
         top: `${y-4.49}%`, 
         transform: `rotate(${bearing}deg)`}}>
       </div>  
-      <div className="Point"                 
+      <div className="Point" onClick={()=>{onClick(index)}}             
       style={{
         left: `${x-.375}%`,
         top: `${y-1.02}%`}}>

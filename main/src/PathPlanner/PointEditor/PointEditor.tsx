@@ -1,17 +1,26 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import ModifiedInputField from "./ModifiedInputField";
 import "./PointEditor.css"
 import { PointToBeMade } from "../PathField/Field";
+import { fieldToPercX, fieldToPercY, percToFieldX, percToFieldY} from "../../util";
 
-function PointEditor({pointOfInterest}: {pointOfInterest:PointToBeMade|undefined}) {
+function PointEditor({pointOfInterest, path, setPath, x, setX, y, setY, v, setV, r, setR}: {pointOfInterest:number|undefined,
+                                                                                            path:PointToBeMade[], setPath:Dispatch<SetStateAction<PointToBeMade[]>>,
+                                                                                            x:number, setX:Dispatch<SetStateAction<number>>, 
+                                                                                            y:number, setY:Dispatch<SetStateAction<number>>, 
+                                                                                            v:number, setV:Dispatch<SetStateAction<number>>, 
+                                                                                            r:number, setR:Dispatch<SetStateAction<number>>}) {
 
-  const [x, setX] = useState(pointOfInterest==undefined?0:pointOfInterest.CordX);
-  const [y, setY] = useState(pointOfInterest==undefined?0:pointOfInterest.CordY);
-  const [v, setV] = useState(pointOfInterest==undefined?0:pointOfInterest.velocity);
-  const [r, setR] = useState(pointOfInterest==undefined?0:pointOfInterest.bearing);
 
   const savePoint =() =>{
-    pointOfInterest?.CordX
+    if (pointOfInterest!=undefined){
+      let tempPath=[...path]
+      tempPath[pointOfInterest].CordX=fieldToPercX(x);
+      tempPath[pointOfInterest].CordY=fieldToPercY(y);
+      tempPath[pointOfInterest].velocity=v;
+      tempPath[pointOfInterest].bearing=r;
+      setPath(tempPath);
+    }
   }
 
 

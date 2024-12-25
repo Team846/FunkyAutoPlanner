@@ -7,13 +7,19 @@ import { scpFile } from "../robotInteraction";
 import PageChooser from "../PageChooser/PageChooser";
 import PathList from "../AutoPlanner/PathList/PathList";
 import "./PathPlanner.css"
+import { fieldToPercX, fieldToPercY, percToFieldX, percToFieldY} from "../util";
 
 
 function PathPlanner({path, setPath}: {path: boolean, setPath: Dispatch<SetStateAction<boolean>>}) {
 
   const [curPath, setCurPath] = useState<PointToBeMade[]>([]);
-  const [pointOfInterest, setPointOfInterest] = useState<PointToBeMade>();
+  const [pointOfInterest, setPointOfInterest] = useState<number>();
   const [name, setName] = useState("");
+
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
+  const [v, setV] = useState(0);
+  const [r, setR] = useState(0);
 
   const create = () =>{
     setCurPath([]);
@@ -33,14 +39,18 @@ function PathPlanner({path, setPath}: {path: boolean, setPath: Dispatch<SetState
   };
 
   const onPointClick =(i:number) =>{
-    setPointOfInterest(curPath[i]);
+    setPointOfInterest(i);
+    setX(percToFieldX(curPath[i].CordX));
+    setY(percToFieldY(curPath[i].CordY));
+    setV(curPath[i].velocity);
+    setR(curPath[i].bearing)
   }
   return (
     <div className="PathPlanner">
       <header className="Path-header">
         <Field onPointClick={onPointClick}listOfPoints={curPath} setListOfPoints={setCurPath}/>
         <div className="path-box">
-        <PointEditor pointOfInterest={pointOfInterest}/>
+        <PointEditor pointOfInterest={pointOfInterest} path={curPath} setPath={setCurPath} x={x} setX={setX} y={y} setY={setY} v={v} setV={setV} r={r} setR={setR}/>
           <div style={{ display: 'flex', flexDirection: "column"}}>
             <PathCreator setPath={setPath} path={path} create={create} save={savePath}/>
             <PointAdder path={curPath} setPath={setCurPath}/>
