@@ -24,11 +24,18 @@ function PointAdder({setPath}: {setPath: Dispatch<SetStateAction<(string | numbe
 
     return (
       <div className="PointAdder">
-        <div className="label">x: </div>
-        <input value={x} onChange={evt => setX(evt.target.value)}/>
-        <div className="label">y: </div>
-        <input value={y} onChange={evt => setY(evt.target.value)}/>
-        <div className="adder" onClick={addPoint}>+</div>
+        <div className="contain">
+          <div className="container">
+            <div className="label">x: </div>
+            <input className="x-input" value={x} onChange={evt => setX(evt.target.value)}/>
+          </div>
+          <div className="container">
+            <div className="label">y: </div>
+            <input className="y-input" value={y} onChange={evt => setY(evt.target.value)}/>
+          </div>
+          <div className="adder" onClick={addPoint}>+</div>
+        </div>
+        <input className="add-comments" placeholder="Comments" />
       </div>
     );
   }

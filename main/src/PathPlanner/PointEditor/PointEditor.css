@@ -1,0 +1,40 @@
+.PointEditor {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-width: 1px;
+    border-radius: 40px;
+    border-color: grey;
+    border-style: solid;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content: start;
+}
+
+.sub-item {
+    display: flex;
+    flex-direction: row;
+    space-between: 5px;
+    margin-top: 10px;
+}
+
+.main-contain {
+    display: flex;
+    flex-direction: column;
+}
+
+.pos-label {
+    padding-left: 0px;
+    padding-right: 0px;
+}

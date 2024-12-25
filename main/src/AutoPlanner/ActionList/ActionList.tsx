@@ -12,6 +12,9 @@ function ActionList({actionlist, auto, setAuto} : {actionlist: string[], auto:((
             })
             }
         </header>
+        <div>
+         
+        </div>
       </div>
     );
   }
