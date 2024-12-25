@@ -1,9 +1,9 @@
 import "./Point.css"
 
-function Point({x, y, bearing} : {x:number, y:number, bearing:number}) {
+function Point({x, y, bearing, onClick, index} : {x:number, y:number, bearing:number, onClick:Function, index:number}) {
     return (
       <>
-      <div className="Robot"                 
+      <div className="Robot"    onClick={()=>{onClick(index)}}             
       style={{
         left: `${x-1.65}%`,
         top: `${y-4.49}%`, 

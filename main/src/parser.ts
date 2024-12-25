@@ -17,7 +17,7 @@ export function parsePathFile (msg: string) {
         const bearing = parseFloat(parts[3]);
         const velocity = parseFloat(parts[4]);
         // Create a new point to be made object with x, y, bearing, and velocity
-        const point = new PointToBeMade(x, y, bearing, velocity);
+        const point = new PointToBeMade(x, y, bearing, velocity, i);
         // Adds a list containing the PointToBeMade object to the main list with all the PointToBeMade objects
         mainList.push(point);        
    }

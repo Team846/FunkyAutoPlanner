@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import Field from "./PathField/Field";
+import Field, { PointToBeMade } from "./PathField/Field";
 import PointAdder from "./PointAdder/PointAdder";
 import PointEditor from "./PointEditor/PointEditor";
 import PathCreator from "./PathCreator/PathCreator";
@@ -11,14 +11,16 @@ import "./PathPlanner.css"
 
 function PathPlanner({path, setPath}: {path: boolean, setPath: Dispatch<SetStateAction<boolean>>}) {
 
-  const [curPath, setCurPath] = useState<(string | number[])[]>([""]);
+  const [curPath, setCurPath] = useState<PointToBeMade[]>([]);
+  const [pointOfInterest, setPointOfInterest] = useState<PointToBeMade>();
+  const [name, setName] = useState("");
 
   const create = () =>{
-    setCurPath([""]);
+    setCurPath([]);
   };
 
   const savePath = (name : string) => {
-    curPath[0] = name;
+    setName(name)
     if (name ==""){
       console.error("Path must have a name!");
       return;
@@ -29,15 +31,19 @@ function PathPlanner({path, setPath}: {path: boolean, setPath: Dispatch<SetState
     }
 
   };
+
+  const onPointClick =(i:number) =>{
+    setPointOfInterest(curPath[i]);
+  }
   return (
     <div className="PathPlanner">
       <header className="Path-header">
-        <Field/>
+        <Field onPointClick={onPointClick}listOfPoints={curPath} setListOfPoints={setCurPath}/>
         <div className="path-box">
-        <PointEditor/>
+        <PointEditor pointOfInterest={pointOfInterest}/>
           <div style={{ display: 'flex', flexDirection: "column"}}>
             <PathCreator setPath={setPath} path={path} create={create} save={savePath}/>
-            <PointAdder setPath={setCurPath}/>
+            <PointAdder path={curPath} setPath={setCurPath}/>
           </div>
         <div className="place-path">
           <header>All Paths</header>

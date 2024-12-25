@@ -13,7 +13,6 @@ function PathConfig({onPath, setOnPath}:{onPath:boolean, setOnPath:Dispatch<SetS
   return (
       <div style={{ display: 'flex', flexDirection: 'row'}} className="PathChooser">
         <div style={{width: "20vw"}}>
-          <PointEditor />
         </div>
         <div style={{ width: "40%", display: 'flex', flexDirection: 'column'}}>
           <div style={{ display: 'flex', flexDirection: 'row'}}>

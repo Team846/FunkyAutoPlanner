@@ -1,8 +1,9 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import "./PointAdder.css"
-import { fieldToPerc } from "../../util";
+import { fieldToPercX, fieldToPercY } from "../../util";
+import { PointToBeMade } from "../PathField/Field";
 
-function PointAdder({setPath}: {setPath: Dispatch<SetStateAction<(string | number[])[]>>}) {
+function PointAdder({path, setPath}: {path: PointToBeMade[], setPath: Dispatch<SetStateAction<(PointToBeMade)[]>>}) {
 
     const [x, setX] = useState("");
     const [y, setY] = useState("");
@@ -12,7 +13,9 @@ function PointAdder({setPath}: {setPath: Dispatch<SetStateAction<(string | numbe
             console.error("Input not numbers...")
         }
         else{
-            var pt = [parseFloat(x), parseFloat(y), 0, 0];
+            var pt = new PointToBeMade(0, 0, 0, 0, path.length);
+            pt.CordX=fieldToPercX(Number(x))
+            pt.CordY=fieldToPercY(Number(y))
             setX("");
             setY("");
             setPath((prevPath) =>[

@@ -1,13 +1,19 @@
 import { useState } from "react";
 import ModifiedInputField from "./ModifiedInputField";
 import "./PointEditor.css"
+import { PointToBeMade } from "../PathField/Field";
 
-function PointEditor() {
+function PointEditor({pointOfInterest}: {pointOfInterest:PointToBeMade|undefined}) {
 
-  const [x, setX] = useState(0);
-  const [y, setY] = useState(0);
-  const [v, setV] = useState(0);
-  const [r, setR] = useState(0);
+  const [x, setX] = useState(pointOfInterest==undefined?0:pointOfInterest.CordX);
+  const [y, setY] = useState(pointOfInterest==undefined?0:pointOfInterest.CordY);
+  const [v, setV] = useState(pointOfInterest==undefined?0:pointOfInterest.velocity);
+  const [r, setR] = useState(pointOfInterest==undefined?0:pointOfInterest.bearing);
+
+  const savePoint =() =>{
+    pointOfInterest?.CordX
+  }
+
 
     return (
       <div className="PointEditor">
@@ -41,6 +47,7 @@ function PointEditor() {
               <span>Default: 50 deg</span>
             </div>
           </div>
+          <div onClick={savePoint}>Change Point</div>
         </div>
       </div>
     );

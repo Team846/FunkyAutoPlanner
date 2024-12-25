@@ -1,7 +1,15 @@
-export function fieldToPerc(x:number, y:number) {
-    return [x, y];
+export function fieldToPercX(x:number) {
+    return x;
 }
 
-export function percToField(x:number, y:number) {
-    return [x, y];
+export function percToFieldX(x:number) {
+    return x;
+}
+
+export function fieldToPercY(y:number) {
+    return y;
+}
+
+export function percToFieldY(y:number) {
+    return y;
 }
