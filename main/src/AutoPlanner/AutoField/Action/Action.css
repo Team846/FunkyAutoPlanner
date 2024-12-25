@@ -1,0 +1,8 @@
+.Action{
+    background: hsl(21, 86%, 54%);
+    border-radius: 100vw;
+    padding:.2%;
+    padding-right: .5%;
+    padding-left: 1.5vw;
+    position:absolute;
+}

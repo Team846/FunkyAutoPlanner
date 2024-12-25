@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { parsePathFile } from "../../parser";
 
 
+
 export class PointToBeMade{
     constructor(x: number, y:number, bearing:number, velocity:number) {
           x = 100 * x / window.innerWidth;
@@ -12,9 +13,10 @@ export class PointToBeMade{
           this.CordX = (x - 10) * 1.25;
           this.CordY = y * 3.5;
           //Converts position of the mouse into percentages relative to the field
-          this.bearing = 0;
-          this.velocity = 0;
+          this.bearing = bearing;
+          this.velocity = velocity;
     }
+  
       CordX: number;
       CordY: number;
       bearing: number;

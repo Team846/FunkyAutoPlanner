@@ -1,0 +1,10 @@
+.ActionComponent{
+    background: hsl(21, 9%, 30%);
+    border-radius: 100vw;
+    height: 1vw;
+    width: 10vw;
+    padding:.2%;
+    
+    margin:1vw;
+    position:relative;
+}
