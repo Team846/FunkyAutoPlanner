@@ -1,11 +1,13 @@
 #FieldImg{
     width: 80vw;
+    height:29.33vw;
 }
 
 .Field{
     width: 80vw;
-    height: 28.6vh; 
+    /* left:10vw; */
+    /* height: 29.33vh;  */
     margin-left: 10vw;
     margin-right: 10vw;
-    position:absolute
+    position:relative;
 }

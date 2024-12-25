@@ -2,7 +2,7 @@ import { useState, SetStateAction, Dispatch} from "react";
 import "./PathCreator.css"
 import PageChooser from "../../PageChooser/PageChooser";
 
-function PathCreator({save, create, path, setPath} : {save : Function, create: Function, path: boolean; setPath: Dispatch<SetStateAction<boolean>>}) {
+function PathCreator({save, create, path, setPath} : {save : Function, create: Function, path: boolean, setPath: Dispatch<SetStateAction<boolean>>}) {
 
     const [name, setName] = useState("");
 

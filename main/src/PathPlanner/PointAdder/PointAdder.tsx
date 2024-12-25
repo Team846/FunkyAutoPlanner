@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import "./PointAdder.css"
+import { fieldToPerc } from "../../util";
 
 function PointAdder({setPath}: {setPath: Dispatch<SetStateAction<(string | number[])[]>>}) {
 
@@ -27,11 +28,11 @@ function PointAdder({setPath}: {setPath: Dispatch<SetStateAction<(string | numbe
         <div className="contain">
           <div className="container">
             <div className="label">x: </div>
-            <input className="x-input" value={x} onChange={evt => setX(evt.target.value)}/>
+            <input className="x-input" type="number" value={x} onChange={evt => setX(evt.target.value)}/>
           </div>
           <div className="container">
             <div className="label">y: </div>
-            <input className="y-input" value={y} onChange={evt => setY(evt.target.value)}/>
+            <input className="y-input" type="number" value={y} onChange={evt => setY(evt.target.value)}/>
           </div>
           <div className="adder" onClick={addPoint}>+</div>
         </div>

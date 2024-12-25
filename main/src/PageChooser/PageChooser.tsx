@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
 
-
 function PageChooser({onPath, setOnPath}:{onPath:boolean, setOnPath:Dispatch<SetStateAction<boolean>>}) {
 
   const onPathClick = () =>{

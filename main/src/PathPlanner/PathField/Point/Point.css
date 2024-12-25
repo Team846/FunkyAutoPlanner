@@ -5,3 +5,11 @@
     width: .6vw;
     position:absolute;
 }
+
+.Robot{
+    background: #c50d0d;
+    border-radius: .1vw;
+    height: 2.632vw;
+    width: 2.632vw;
+    position:absolute;
+}
