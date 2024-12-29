@@ -15,17 +15,17 @@ function Field({Auto}: {Auto: ((string | number)[] | number[][])[]}) {
               {typeof value[0]!="string" ? 
                 value.map((point, r) => {
                   var rP;
-                  rP = Array.isArray(point) ? [fieldToPercX(point[0]), fieldToPercY(point[1])] : [-10, -10];
+                  rP = Array.isArray(point) ? [fieldToPercX(point[0]), fieldToPercY(point[1]), point[2]] : [-10, -10, 0];
                   if (r==0){
                     return(
-                      <Point x={rP[0]}  y={rP[1]}/>
+                      <Point x={rP[0]}  y={rP[1]} bearing={rP[2]}/>
                     );
                   }
                   else{
                     var prevPoint = value[r-1];
                     var rpPrev = Array.isArray(prevPoint) ? [fieldToPercX(prevPoint[0]), fieldToPercY(prevPoint[1])] :[-10, -10];
                     return (<>
-                      <Point x={rP[0]}  y={rP[1]}/>
+                      <Point x={rP[0]}  y={rP[1]} bearing={rP[2]}/>
                       <PathLine pX={rpPrev[0]} pY={rpPrev[1]} cX={rP[0]} cY={rP[1]}/>
                     </>)
                   }

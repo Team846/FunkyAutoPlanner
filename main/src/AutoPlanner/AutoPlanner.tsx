@@ -13,7 +13,7 @@ function AutoPlanner({onPath, setOnPath}:{onPath:boolean, setOnPath:Dispatch<Set
       <header className="Auto-header">AutoPlanner
         <Field Auto={auto}/>
         <AutoFormer onPath={onPath} setOnPath={setOnPath} />
-        <PathList Pathlist={[["PathOne", [[1, 1], [2, 2]]]]} auto={auto} setAuto={setAuto}/>
+        <PathList Pathlist={[["PathOne", [[1, 1, 0], [200, 200, 60]]]]} auto={auto} setAuto={setAuto}/>
         <ActionList actionlist={["a", "b"]} auto={auto} setAuto={setAuto}/>
       </header>
     </div>
