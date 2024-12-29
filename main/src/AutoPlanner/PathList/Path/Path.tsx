@@ -1,7 +1,7 @@
 import { Dispatch, MouseEventHandler, SetStateAction } from "react";
 import "./Path.css"
 
-function Path({path, auto, setAuto} : {path:(string | number[][])[], auto:((string | number)[] | number[][])[], setAuto: Dispatch<SetStateAction<((string | number)[] | number[][])[]>> }) {
+function Path({path, auto, setAuto, name} : {name: string, path:(string | number[][])[], auto:((string | number)[] | number[][])[], setAuto: Dispatch<SetStateAction<((string | number)[] | number[][])[]>> }) {
 
     const handleClick =() =>{
         setAuto((prevAuto) => [
@@ -11,7 +11,7 @@ function Path({path, auto, setAuto} : {path:(string | number[][])[], auto:((stri
     }
 
     return (
-      <div className="PathComponent" key={path[0] as string} onClick={handleClick}>{path[0]}
+      <div className="PathComponent" key={path[0] as string} onClick={handleClick}>{name}
       </div>
     );
   }

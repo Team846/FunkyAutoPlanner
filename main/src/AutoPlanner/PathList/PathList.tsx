@@ -8,7 +8,7 @@ function PathList({Pathlist, auto, setAuto} : {Pathlist: (string | number[][])[]
       <div className="PathList">
         <header className="Path-list-header">PathList
             {Pathlist.map((value, index) => {
-                return(<Path path={value} auto={auto} setAuto={setAuto}/>)
+                return(<Path path={value} auto={auto} setAuto={setAuto} name={"awg"}/>)
             })
             }
         </header>

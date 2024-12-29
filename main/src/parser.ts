@@ -1,4 +1,5 @@
 import {PointToBeMade} from "./PathPlanner/PathField/Field"
+import { fieldToPercX, fieldToPercY } from "./util";
 
 
 //Should take path file message, and then return a list of the PointToBeMade class
@@ -8,19 +9,23 @@ export function parsePathFile (msg: string) {
    const list = msg.split('\n');
    // Create a new list to store all the PointToBeMade objects
    const mainList = [];
+   console.log(list);
    for (var i = 0; i < list.length; ++i) {
         // Split each message by commas
-        const parts = msg[i].split(',');
+        const parts = list[i].split(',');
         // Extract x and y coordinates from the split array
-        const x = parseFloat(parts[1]);
-        const y = parseFloat(parts[2]);
+        const x = fieldToPercX(parseFloat(parts[1]));
+        const y = fieldToPercY(parseFloat(parts[2]));
         const bearing = parseFloat(parts[3]);
         const velocity = parseFloat(parts[4]);
         // Create a new point to be made object with x, y, bearing, and velocity
-        const point = new PointToBeMade(x, y, bearing, velocity, i);
+        const point = new PointToBeMade(1, 1, bearing, velocity, i);
+        point.CordX=x;
+        point.CordY=y;
         // Adds a list containing the PointToBeMade object to the main list with all the PointToBeMade objects
         mainList.push(point);        
    }
+   console.log(mainList)
    // Returns the main list containing all the PointToBeMade objects
    return mainList;
 }

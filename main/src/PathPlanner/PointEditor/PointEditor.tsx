@@ -22,6 +22,14 @@ function PointEditor({pointOfInterest, path, setPath, x, setX, y, setY, v, setV,
       setPath(tempPath);
     }
   }
+  const removePoint =() =>{
+    if (pointOfInterest!=undefined){
+      let tempPath=[...path]
+      tempPath.splice(pointOfInterest, 1)
+      setPath(tempPath);
+    }
+    pointOfInterest=undefined;
+  }
 
 
     return (
@@ -31,32 +39,33 @@ function PointEditor({pointOfInterest, path, setPath, x, setX, y, setY, v, setV,
           <div className="item">
             <div className="pos-label">Position X</div>
             <div className="sub-item">
-              <ModifiedInputField field={x} setField={setX} unit="m" />
-              <span>Default: N/A</span>
+              <ModifiedInputField field={x} setField={setX} unit="in" />
+              <span>Default: 0</span>
             </div>
           </div>
           <div className="item">
             <div className="pos-label">Position Y</div>
             <div className="sub-item">
-              <ModifiedInputField field={y} setField={setY} unit="m" />
-              <span>Default: N/A</span>
+              <ModifiedInputField field={y} setField={setY} unit="in" />
+              <span>Default: 0</span>
             </div>
           </div>
           <div className="item">
             <div className="pos-label">Velocity</div>
             <div className="sub-item">
-              <ModifiedInputField field={v} setField={setV} unit="m/s" />
-              <span>Default: 10 m/s</span>
+              <ModifiedInputField field={v} setField={setV} unit="ft/s" />
+              <span>Default: 0</span>
             </div>
           </div>
           <div className="item">
             <span className="pos-label">Rotation</span>
             <div className="sub-item">
               <ModifiedInputField field={r} setField={setR} unit="deg" />
-              <span>Default: 50 deg</span>
+              <span>Default: 0</span>
             </div>
           </div>
           <div onClick={savePoint}>Change Point</div>
+          <div onClick={removePoint}>Remove Point</div>
         </div>
       </div>
     );

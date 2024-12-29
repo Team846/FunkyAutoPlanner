@@ -39,7 +39,6 @@ function PointAdder({path, setPath}: {path: PointToBeMade[], setPath: Dispatch<S
           </div>
           <div className="adder" onClick={addPoint}>+</div>
         </div>
-        <input className="add-comments" placeholder="Comments" />
       </div>
     );
   }
