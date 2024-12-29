@@ -2,6 +2,7 @@ import "./Field.css"
 import Point from "./Point/Point";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { parsePathFile } from "../../parser";
+import PathLine from "../../AutoPlanner/AutoField/PathLine/PathLine";
 
 
 
@@ -45,6 +46,16 @@ function Field({listOfPoints, setListOfPoints, onPointClick}: {listOfPoints: Poi
          handleFieldClick(e)
        }} id="FieldImg" src="/field.png"/>
        <ul>{listOfPointsItems}</ul>
+
+
+       {listOfPoints.map((PointP, index) => {
+        if (index > 0) {
+          var prevPoint = listOfPoints[index-1];
+        return (<>  
+          <PathLine pX={prevPoint.CordX} pY={prevPoint.CordY} cX={PointP.CordX} cY={PointP.CordY}/>
+        </>)
+        }
+       })}
       </div>
     );
   }

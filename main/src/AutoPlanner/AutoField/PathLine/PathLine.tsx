@@ -2,12 +2,12 @@ import "./PathLine.css"
 
 function PathLine({pX, pY, cX, cY} : {pX:number, pY:number, cX:number, cY: number}) {
     return (
-      <div className="PathLine" key={"("+pX+", "+pY+") -> ("+cX+", "+cY+")"}                 
+      <div className="PathLine" key={"("+pX+", "+pY+") -> ("+cX+", "+cY+")"}                
       style={{
-        left: `${pX}%`,
-        top: `${(pY+cY)/2.0}%`, 
-        width: `${Math.sqrt(Math.pow(((cX-pX)*.8), 2)+ Math.pow(((cY-pY)*.2934), 2))}vw`, 
-        transform: `rotate(${Math.atan2((cY-pY)*2.934, (cX-pX)*8)*180/3.141}deg)`}}> 
+        top: `${(pY+cY)/2}%`, 
+        width: `${Math.sqrt(Math.pow(((cX-pX)*.8), 2)+ Math.pow(((cY-pY)*.2933), 2))}vw`,
+        left: `${((pX+cX)*.8 - Math.sqrt(Math.pow(((cX-pX)*.8), 2)+ Math.pow(((cY-pY)*.2933), 2)))/2}vw`,
+        transform: `rotate(${Math.atan2((cY-pY)*.2933, (cX-pX)*.8)*180/3.1416}deg)`}}> 
         {/* /[ {rotate: `${Math.atan2((cY-pY)*2.934, (cX-pX)*8)} deg`} ]}}> */}
       </div>
     );
