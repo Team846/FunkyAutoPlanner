@@ -1,0 +1,44 @@
+.AutoFormer {
+    position: absolute;
+    left:20vw;
+    margin: 1vh;
+    width: 50vw;
+}
+
+.save-path {
+    border-style: solid;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.create-path {
+    border-style: solid;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.creator-box {
+    text-align: left;
+    border-style: solid;
+    border-radius: 25px;
+    border-color: grey;
+    padding-left: 10px;
+    height: 50vh;
+}
+
+.box-desc {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.auto-box {
+    padding-top: 10px;
+    padding-bottom: 20px;
+}

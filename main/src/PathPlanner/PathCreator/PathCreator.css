@@ -33,6 +33,8 @@
 .path-creator {
     display: flex;
     flex-direction: column;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 
 .header {

@@ -6,7 +6,7 @@ import AutoConfig from './AutoPlanner/AutoConfig/AutoConfig';
 import PathConfig from './PathPlanner/PathConfig/PathConfig';
 
 function App() {
-  const [onPath, setOnPath] = React.useState(true);
+  const [onPath, setOnPath] = React.useState(false);
   return (
     <div className="App">
       {onPath ? <PathPlanner path={onPath} setPath={setOnPath}/> : <AutoPlanner onPath={onPath} setOnPath={setOnPath} />}

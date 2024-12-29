@@ -15,7 +15,7 @@ function AutoPlanner({onPath, setOnPath}:{onPath:boolean, setOnPath:Dispatch<Set
         <AutoFormer onPath={onPath} setOnPath={setOnPath} />
         <PathList Pathlist={[["PathOne", [[1, 1], [2, 2]]]]} auto={auto} setAuto={setAuto}/>
         <ActionList actionlist={["a", "b"]} auto={auto} setAuto={setAuto}/>
-      </header>
+      </header> 
     </div>
   );
 }
