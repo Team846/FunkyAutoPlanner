@@ -43,7 +43,7 @@ function AutoPlanner({onPath, setOnPath}) {
     msg=msg.substring(0, msg.length-1);
     window.api.send("writeToFile", `/deploy/scripts/${name}`, msg);
     createAuto();
-
+    window.api.send("scpFile", `/deploy/scripts/${name}`, `/deploy/scripts/${name}`);
   }
 
   return (
@@ -52,7 +52,7 @@ function AutoPlanner({onPath, setOnPath}) {
         <Field Auto={auto}/>
         <AutoFormer onPath={onPath} setOnPath={setOnPath} createAuto={createAuto} name={name} setName={setName} saveAuto={saveAuto}/>
         <PathList setAuto={setAuto} setNamedAuto={setNamedAuto}/>
-        <ActionList actionlist={["shoot", "raiseArm", "action3"]} auto={auto} setAuto={setAuto} setNamedAuto={setNamedAuto}/>
+        <ActionList actionlist={["shoot", "prep_shoot", "a_prep_shoot", "deploy_intake", "auto_home"]} auto={auto} setAuto={setAuto} setNamedAuto={setNamedAuto}/>
         <AutoList setAuto={setAuto} setNamedAuto={setNamedAuto}/>
       </header>
     </div>

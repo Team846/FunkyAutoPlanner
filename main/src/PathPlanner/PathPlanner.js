@@ -51,10 +51,12 @@ function PathPlanner({path, setPath}) {
           else{
             window.api.send("writeToFile", "/deploy/points.lst", addendMsg);
           }
+          window.api.send("scpFile", `/deploy/paths/points.lst`, `/deploy/paths/points.lst`);
       });
     }
     else{
       window.api.send("writeToFile", `/deploy/paths/${name}`, msg.substring(0, msg.length-1));
+      window.api.send("scpFile", `/deploy/paths/${name}`, `/deploy/paths/${name}`);
     }
     msg=`P,${percToFieldX(curPath.at(0).CordX)},${percToFieldY(curPath.at(0).CordY)},${curPath.at(0).bearing},${curPath.at(0).velocity}\n`+msg
 

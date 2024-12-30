@@ -9,7 +9,7 @@ contextBridge.exposeInMainWorld(
     "api", {
         send: (channel, file, data) => {
             // whitelist channels
-            let validChannels = ["writeToFile", "readFromFile", "allFilesInDir2", "allFilesInDir"];
+            let validChannels = ["writeToFile", "readFromFile", "allFilesInDir2", "allFilesInDir", "scpFile"];
             if (validChannels.includes(channel)) {
                 ipcRenderer.send(channel, file, data);
             }

@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const url = require('url');
+const {Client} = require ('node-scp')
 
 const fs = require('fs')
 let win;
@@ -43,10 +44,7 @@ app.on('activate', () => {
 
 ipcMain.on("writeToFile", (event, file, data) => {
     try {
-    fs.writeFile(path.join(app.getAppPath(), file), data, (err) => {
-        if (err) throw err;
-        console.log('File written successfully');
-        });
+    fs.writeFileSync(path.join(app.getAppPath(), file), data)
     } catch (err) {
     console.error('Error writing to file:', err);
     }
@@ -85,4 +83,22 @@ ipcMain.on("allFilesInDir2", (event, folder, data) => {
     } catch (err) {
         console.error('Error getting files:', err);
     }
+})
+
+ipcMain.on("scpFile", (event, file1, file2Loc) =>{
+    Client({
+        host: '10.8.46.2',
+        port: 22,
+        username: 'admin',
+        password: '',
+      }).then(client => {
+        client.uploadFile(
+          path.join(app.getAppPath(), file1),
+          '/home/lvuser/'+file2Loc,
+        )
+              .then(response => {
+                client.close() // remember to close connection after you finish
+              })
+              .catch(error => {console.error(error)})
+      }).catch(e => console.error(e))
 })
