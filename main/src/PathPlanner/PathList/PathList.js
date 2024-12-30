@@ -22,6 +22,8 @@ function PathList({setPath, setName}) {
         window.api.send("allFilesInDir", `/visualizer/paths/`, "");
         window.api.receive("allFilesInDirData", (data) => {
             setPaths(data);
+            console.log(data);
+            console.log("ewaoihgawouihg");
         });
       }, []);
 

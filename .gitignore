@@ -69,3 +69,5 @@ package-lock.json
 /main/visualizer/autos/*
 /main/deploy/paths/*
 /main/deploy/autos/*
+/main/deploy/points.lst
+/main/deploy/scripts/*

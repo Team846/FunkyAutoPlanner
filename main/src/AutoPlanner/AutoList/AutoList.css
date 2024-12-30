@@ -1,13 +1,13 @@
-.PathList{
+.AutoList{
     background: hsl(0, 0%, 55%);
     position: absolute;
     padding: 1vw;
     margin: 1vw;
     border-radius: 2vw;
-    right: 30vw;
+    right: 10vw;
     vertical-align: text-top;
 }
-.PathComponent{
+.AutoComponent{
     background: hsl(21, 9%, 30%);
     border-radius: 100vw;
     height: 1vw;

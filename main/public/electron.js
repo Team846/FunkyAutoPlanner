@@ -61,6 +61,7 @@ ipcMain.on("readFromFile", (event, file, data) => {
     }
   });
 
+
 ipcMain.on("allFilesInDir", (event, folder, data) => {
     try {
         const files=[]
@@ -68,6 +69,19 @@ ipcMain.on("allFilesInDir", (event, folder, data) => {
             files.push(file)
         });
         win.webContents.send("allFilesInDirData", files);
+    } catch (err) {
+        console.error('Error getting files:', err);
+    }
+})
+
+
+ipcMain.on("allFilesInDir2", (event, folder, data) => {
+    try {
+        const files=[]
+        fs.readdirSync(path.join(app.getAppPath(), folder)).forEach(file => {
+            files.push(file)
+        });
+        win.webContents.send("allFilesInDirData2", files);
     } catch (err) {
         console.error('Error getting files:', err);
     }

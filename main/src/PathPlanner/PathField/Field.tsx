@@ -39,7 +39,7 @@ function Field({listOfPoints, setListOfPoints, onPointClick}: {listOfPoints: Poi
     var newP = new PointToBeMade(0, 0, 0, 0, 0);
     const[p, setP] = useState(newP);
     // const[listOfPoints, setListOfPoints] = useState([new PointToBeMade(0, 0, 0, 0)]);
-    const listOfPointsItems = listOfPoints.map((pnt) => <Point x={pnt.CordX} y={pnt.CordY} bearing={pnt.bearing} index={pnt.index} onClick={onPointClick}/>);
+    const listOfPointsItems = listOfPoints.map((pnt, i) => <Point x={pnt.CordX} y={pnt.CordY} bearing={pnt.bearing} index={i} onClick={onPointClick}/>);
     return (
       <div className="Field">
         <img onClick={(e) => {

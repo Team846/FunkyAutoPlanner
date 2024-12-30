@@ -22,7 +22,7 @@ function PathPlanner({path, setPath}) {
   const [r, setR] = useState(0);
 
   const create = () =>{
-    setCurPath([]);
+    setName("");
   };
 
   const savePath = () => {
@@ -40,10 +40,26 @@ function PathPlanner({path, setPath}) {
     for (var i=1; i<curPath.length; i++){
       msg+=`P,${percToFieldX(curPath.at(i).CordX)},${percToFieldY(curPath.at(i).CordY)},${curPath.at(i).bearing},${curPath.at(i).velocity}\n`
     }
-    msg=msg.substring(0, msg.length-1)
-    window.api.send("writeToFile", `/deploy/paths/${name}`, msg);
+    if (curPath.length==1){
+      //this is a point, not a path, save in points.lst
+      var addendMsg = `N,${name},${percToFieldX(curPath.at(0).CordX)},${percToFieldY(curPath.at(0).CordY)},${curPath.at(0).bearing},${curPath.at(0).velocity}`
+      window.api.send("readFromFile", `/deploy/points.lst`, "");
+      window.api.receive("fileData", (data) => {
+          if (data!=""){
+            window.api.send("writeToFile", `/deploy/points.lst`, data+"\n"+addendMsg);
+          }
+          else{
+            window.api.send("writeToFile", "/deploy/points.lst", addendMsg);
+          }
+      });
+    }
+    else{
+      window.api.send("writeToFile", `/deploy/paths/${name}`, msg.substring(0, msg.length-1));
+    }
     msg=`P,${percToFieldX(curPath.at(0).CordX)},${percToFieldY(curPath.at(0).CordY)},${curPath.at(0).bearing},${curPath.at(0).velocity}\n`+msg
-    window.api.send("writeToFile", `/visualizer/paths/${name}f`, msg);
+
+
+    window.api.send("writeToFile", `/visualizer/paths/${name}`,  msg.substring(0, msg.length-1));
 
 
   };

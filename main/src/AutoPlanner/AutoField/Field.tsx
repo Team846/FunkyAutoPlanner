@@ -4,8 +4,9 @@ import Action from "./Action/Action"
 import { useState } from "react";
 import PathLine from "./PathLine/PathLine";
 import { fieldToPercX, fieldToPercY } from "../../util";
+import { PointToBeMade } from "../../PathPlanner/PathField/Field";
 
-function Field({Auto}: {Auto: ((string | number)[] | number[][])[]}) {
+function Field({Auto}: {Auto: ((string | number)[] | PointToBeMade[])[]}) {
 
     return (
       <div className="Field">
@@ -14,25 +15,24 @@ function Field({Auto}: {Auto: ((string | number)[] | number[][])[]}) {
             <>
               {typeof value[0]!="string" ? 
                 value.map((point, r) => {
-                  var rP;
-                  rP = Array.isArray(point) ? [fieldToPercX(point[0]), fieldToPercY(point[1]), point[2]] : [-10, -10, 0];
+                  var rP = point as PointToBeMade;
                   if (r==0){
                     return(
-                      <Point x={rP[0]}  y={rP[1]} bearing={rP[2]}/>
+                      <Point x={rP.CordX}  y={rP.CordY} bearing={rP.bearing}/>
                     );
                   }
                   else{
                     var prevPoint = value[r-1];
-                    var rpPrev = Array.isArray(prevPoint) ? [fieldToPercX(prevPoint[0]), fieldToPercY(prevPoint[1])] :[-10, -10];
+                    var rpPrev = prevPoint as PointToBeMade;
                     return (<>
-                      <Point x={rP[0]}  y={rP[1]} bearing={rP[2]}/>
-                      <PathLine pX={rpPrev[0]} pY={rpPrev[1]} cX={rP[0]} cY={rP[1]}/>
+                      <Point x={rP.CordX}  y={rP.CordY} bearing={rP.bearing}/>
+                      <PathLine pX={rpPrev.CordX} pY={rpPrev.CordY} cX={rP.CordX} cY={rP.CordY}/>
                     </>)
                   }
                 }) :
                 
-                  <Action key={index} x={fieldToPercX(Number(value[1]))} 
-                                      y={fieldToPercY(Number(value[2]))}
+                  <Action key={index} x={Number(value[1])} 
+                                      y={Number(value[2])}
                                       actionName={value[0]}/>
                 
               }
