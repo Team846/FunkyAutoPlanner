@@ -6,7 +6,7 @@ function PathList({Pathlist, auto, setAuto} : {Pathlist: (string | number[][])[]
 
     return (
       <div className="PathList">
-        <header className="Path-list-header">PathList
+        <header className="Path-list-header">All Paths
             {Pathlist.map((value, index) => {
                 return(<Path path={value} auto={auto} setAuto={setAuto}/>)
             })

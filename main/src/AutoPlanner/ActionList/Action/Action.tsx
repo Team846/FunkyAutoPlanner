@@ -19,7 +19,9 @@ function Action({action, auto, setAuto} : {action:string, auto:((string | number
     }
 
     return (
-      <div className="ActionComponent" key={action} onClick={handleClick}>{action}
+      <div className="ActionComponent" key={action} onClick={handleClick}>
+        <span>{action}</span>
+        <span className="colon">:</span>
       </div>
     );
   }

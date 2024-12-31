@@ -11,7 +11,11 @@ function Path({path, auto, setAuto} : {path:(string | number[][])[], auto:((stri
     }
 
     return (
-      <div className="PathComponent" key={path[0] as string} onClick={handleClick}>{path[0]}
+      <div className="PathComponent" key={path[0] as string} onClick={handleClick}>
+        <span>{path[0]}</span>
+        <button className="path-button">Intake</button>
+        <button className="path-button">Extend</button>
+        <button className="path-button">Shoot</button>
       </div>
     );
   }
