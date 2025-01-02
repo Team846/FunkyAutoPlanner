@@ -43,7 +43,7 @@ function AutoPlanner({onPath, setOnPath}) {
     msg=msg.substring(0, msg.length-1);
     window.api.send("writeToFile", `/deploy/scripts/${name}`, msg);
     createAuto();
-    window.api.send("scpFile", `/deploy/scripts/${name}`, `/deploy/scripts/${name}`);
+    window.api.send("scpFile", `/deploy/scripts/${name}`, `/scripts/${name}`);
   }
 
   return (
