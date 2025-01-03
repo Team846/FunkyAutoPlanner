@@ -1,6 +1,7 @@
 #FieldImg{
     width: 80vw;
     height:29.33vw;
+    user-select: none;
 }
 
 .Field{
@@ -10,4 +11,5 @@
     margin-left: 10vw;
     margin-right: 10vw;
     position:relative;
+    user-select: none;
 }

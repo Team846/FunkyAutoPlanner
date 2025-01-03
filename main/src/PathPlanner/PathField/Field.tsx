@@ -26,6 +26,7 @@ export class PointToBeMade{
       index:number;
   };
 
+
 function Field({listOfPoints, setListOfPoints, onPointClick}: {listOfPoints: PointToBeMade[], setListOfPoints:  Dispatch<SetStateAction<PointToBeMade[]>>, onPointClick:Function}) {
     const handleFieldClick =(e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
         //Func. that adds points on the location you clicked
@@ -36,10 +37,24 @@ function Field({listOfPoints, setListOfPoints, onPointClick}: {listOfPoints: Poi
         setListOfPoints(NewListOfPoints);
     };
 
+
+    const updatePointPosition = (index: number, newPosition: { x: number; y: number }) => {
+      setListOfPoints((prevPoints) => {
+        const updatedPoints = [...prevPoints];
+        updatedPoints[index] = {
+          ...updatedPoints[index],
+          CordX: newPosition.x,
+          CordY: newPosition.y,
+        };
+        return updatedPoints;
+      });
+    };
+
+
     var newP = new PointToBeMade(0, 0, 0, 0, 0);
     const[p, setP] = useState(newP);
     // const[listOfPoints, setListOfPoints] = useState([new PointToBeMade(0, 0, 0, 0)]);
-    const listOfPointsItems = listOfPoints.map((pnt, i) => <Point x={pnt.CordX} y={pnt.CordY} bearing={pnt.bearing} index={i} onClick={onPointClick}/>);
+    const listOfPointsItems = listOfPoints.map((pnt, i) => <Point x={pnt.CordX} y={pnt.CordY} bearing={pnt.bearing} index={i} onClick={onPointClick} updatePointPosition={updatePointPosition}/>);
     return (
       <div className="Field">
         <img onClick={(e) => {
