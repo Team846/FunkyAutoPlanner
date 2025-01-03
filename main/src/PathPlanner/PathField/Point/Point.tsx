@@ -40,6 +40,19 @@ function Point({x, y, bearing, onClick, index, updatePointPosition} : {x:number,
 
   return (
     <>
+    <div
+        className="Robot"
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseMove={handleMouseMove}
+        onClick={() => onClick(index)}
+        style={{
+          left: `${position.x - 1.275}%`,
+          top: `${position.y - 3.47}%`,
+          transform: `rotate(${bearing}deg)`,
+        }}
+      />
+
       <div className="Point"
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
@@ -48,16 +61,6 @@ function Point({x, y, bearing, onClick, index, updatePointPosition} : {x:number,
         style={{
           left: `${position.x}%`,
           top: `${position.y}%`,
-        }}
-
-      />
-      <div
-        className="Robot"
-        onClick={() => onClick(index)}
-        style={{
-          left: `${position.x - 1.275}%`,
-          top: `${position.y - 3.47}%`,
-          transform: `rotate(${bearing}deg)`,
         }}
       />
     </>
