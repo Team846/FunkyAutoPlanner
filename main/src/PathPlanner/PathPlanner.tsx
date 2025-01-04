@@ -34,16 +34,16 @@ function PathPlanner({path, setPath}: {path: boolean, setPath: Dispatch<SetState
       <header className="Path-header">
         <Field/>
         <div className="path-box">
-        <PointEditor/>
+          <PointEditor/>
           <div style={{ display: 'flex', flexDirection: "column"}}>
             <PathCreator setPath={setPath} path={path} create={create} save={savePath}/>
             <PointAdder setPath={setCurPath}/>
           </div>
-        <div className="place-path">
-          <header>All Paths</header>
-          <div className="path-list-item">ITEM</div>
-          <div className="path-list-item">ITEM</div>
-        </div>
+          <div className="place-path">
+            <header>All Paths</header>
+            <div className="path-list-item">ITEM</div>
+            <div className="path-list-item">ITEM</div>
+          </div>
         </div>
         {/* <PathList  /> */}
       </header>

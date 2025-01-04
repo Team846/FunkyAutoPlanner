@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-
-
+import './PageChooser.css'
 
 function PageChooser({onPath, setOnPath}:{onPath:boolean, setOnPath:Dispatch<SetStateAction<boolean>>}) {
 
@@ -14,8 +13,8 @@ function PageChooser({onPath, setOnPath}:{onPath:boolean, setOnPath:Dispatch<Set
 
   return (
     <div className="PageChooser">
-      <button onClick={onPathClick}>Path</button>
-      <button onClick={onAutoClick}>Auto</button>
+      <button className="path-chooser" onClick={onPathClick}>Path</button>
+      <button className="auto-chooser" onClick={onAutoClick}>Auto</button>
     </div>
   );
 }
