@@ -15,7 +15,7 @@
     "@types/react": "^18.3.16",
     "@types/react-dom": "^18.3.5",
     "core-js-pure": "^3.39.0",
-    "node-scp": "0.0.23",
+    "node-scp": "^0.0.23",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-scripts": "5.0.1",
