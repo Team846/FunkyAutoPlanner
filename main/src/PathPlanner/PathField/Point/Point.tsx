@@ -3,7 +3,7 @@ import React, {useState, useEffect} from "react";
 
 function Point({x, y, bearing, onClick, index, updatePointPosition} : {x:number, y:number, bearing:number, onClick:Function, index:number, updatePointPosition: (index: number, newPosition: { x: number, y: number }) => void;}) {
   const [pressed, setPressed] = useState(false);
-  const [position, setPosition] = useState({ x: x - 0.375, y: y - 1.02 });
+  const [position, setPosition] = useState({x: x - 0.375, y: y - 1.02});
 
   const handleMouseDown = () => {
     setPressed(true);
@@ -11,6 +11,11 @@ function Point({x, y, bearing, onClick, index, updatePointPosition} : {x:number,
 
   const handleMouseUp = () => {
     setPressed(false);
+    const newPos = {
+      x: position.x + 0.375,
+      y: position.y + 1.02,
+    };
+    updatePointPosition(index, newPos);
   };
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -37,6 +42,7 @@ function Point({x, y, bearing, onClick, index, updatePointPosition} : {x:number,
       window.removeEventListener("mouseup", handleGlobalMouseUp);
     };
   }, []);
+
 
   return (
     <>
