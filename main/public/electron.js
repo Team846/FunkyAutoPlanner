@@ -85,20 +85,30 @@ ipcMain.on("allFilesInDir2", (event, folder, data) => {
     }
 })
 
-ipcMain.on("scpFile", (event, file1, file2Loc) =>{
+ipcMain.on("scpFile", (event, file1, file2Loc) => {
+    console.log('Attempting to access:', file2Loc);
+
+    const targetPath = file2Loc.replace(/^\/+/, '');
+    
     Client({
-        host: '10.8.46.2',
-        port: 22,
-        username: 'admin',
-        password: '',
-      }).then(client => {
-        client.uploadFile(
-          path.join(app.getAppPath(), file1),
-          '/home/lvuser/'+file2Loc,
-        )
-              .then(response => {
-                client.close() // remember to close connection after you finish
-              })
-              .catch(error => {console.error(error)})
-      }).catch(e => console.error(e))
-})
+      host: '10.8.46.2',
+      port: 22,
+      username: 'admin',
+      password: '', 
+    }).then(client => {
+      client.uploadFile(
+        path.join(app.getAppPath(), file1),
+        '/home/lvuser/' + targetPath
+      )
+      .then(response => {
+        client.close() // Close connection after transfer
+        console.log('File transferred successfully');
+      })
+      .catch(error => {
+        console.error('Upload error:', error);
+        client.close();
+      })
+    }).catch(error => {
+      console.error('Connection error:', error);
+    });
+  });
