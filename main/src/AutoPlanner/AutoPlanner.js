@@ -52,7 +52,7 @@ function AutoPlanner({onPath, setOnPath}) {
         <Field Auto={auto}/>
         <AutoFormer onPath={onPath} setOnPath={setOnPath} createAuto={createAuto} name={name} setName={setName} saveAuto={saveAuto}/>
         <PathList setAuto={setAuto} setNamedAuto={setNamedAuto}/>
-        <ActionList actionlist={["shoot", "prep_shoot", "a_prep_shoot", "deploy_intake", "auto_home"]} auto={auto} setAuto={setAuto} setNamedAuto={setNamedAuto}/>
+        <ActionList actionlist={["shoot", "prep_shoot", "a_prep_shoot", "deploy_intake", "auto_home", "wait"]} auto={auto} setAuto={setAuto} setNamedAuto={setNamedAuto}/>
         <AutoList setAuto={setAuto} setNamedAuto={setNamedAuto}/>
       </header>
     </div>
