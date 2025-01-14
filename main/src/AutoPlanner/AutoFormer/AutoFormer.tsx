@@ -20,14 +20,20 @@ function AutoFormer({onPath, setOnPath}:{onPath:boolean, setOnPath:Dispatch<SetS
             {autoList.length > 0 ?(
               autoList.map((item, index) => {
                 return (
-                  <div className="Action" key = {index}>
+                  <div className="Action" key = {index}
+                  onContextMenu = {(e) => {
+                    e.preventDefault();
+                    setAutoList((prevList) => prevList.filter((e,i) => i !== index));
+                  }}
+                  >
                     {item}
+                    
                   </div>
                 );
               })
             ):(
             <span className="box-desc">Drag an auto to get started</span>
-          )}
+          )} 
           </div>
         </div>
       </div>
