@@ -5,7 +5,6 @@ import AutoFormer from "./AutoFormer/AutoFormer"
 import AutoList from "./AutoList/AutoList";
 import PathList from "./PathList/PathList";
 import { Dispatch, SetStateAction, useState } from "react";
-import PathPlaybacker from "./PathPlayback/PathPlayback";
 
 function AutoPlanner({onPath, setOnPath}) {
 
