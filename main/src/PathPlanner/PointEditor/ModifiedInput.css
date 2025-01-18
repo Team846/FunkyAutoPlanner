@@ -4,5 +4,19 @@
     padding-X: 10px;
     padding-Y: 2px;
     border-radius: 20vh;
-    color:white;
+
+}
+
+.mod-ovr {
+    border-width: 2px;
+    margin-right: 10px;
+    border-radius: 999px;
+    border-color: white;
+    display: flex;
+    flex-direction: row;
+}
+
+.span-label {
+    margin-left: 10px;
+    margin-right: 10px;
 }

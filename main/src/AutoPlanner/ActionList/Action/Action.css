@@ -1,10 +1,20 @@
 .ActionComponent{
-    background: hsl(21, 9%, 30%);
     border-radius: 100vw;
     height: 1vw;
     width: 10vw;
-    padding:.2%;
-    
     margin:1vw;
     position:relative;
+    border-style: solid;
+    border-width: 0.5px;
+    padding-left: 10px;
+    padding-top: 2.5px;
+    padding-bottom: 12.5px;
+    border-color: grey;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.colon {
+    margin-right: 20px;
 }
