@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import "./AutoList.css"
 import { parseAutoFile, parsePathFile } from "../../parser";
 
-function AutoList({setAuto, setNamedAuto}) {
+function AutoList({setAuto, setNamedAuto, autoSavePath}) {
 
     const [AutoList, SetAutoList] = useState([]);
 
@@ -11,14 +11,14 @@ function AutoList({setAuto, setNamedAuto}) {
     const sleep = ms => new Promise(r => setTimeout(r, ms));
 
     useEffect( () => {
-      window.api.send("allFilesInDir2", `/deploy/scripts/`, "");
+      window.api.send("allFilesInDir2", `/visualizer/scripts/`, "");
       window.api.receive("allFilesInDirData2", (data) => {
           SetAutoList(data);
       });
     }, []);
 
     const loadAuto=(name)=>{
-      window.api.send("readFromFile", `/deploy/scripts/${name}`, "");
+      window.api.send("readFromAppFile", `visualizer/scripts/${name}`, "");
       window.api.receive("fileData", async (data) => {
 
         parseAutoFile(data).then((res) => {

@@ -55,6 +55,7 @@ function PathPlanner({ path, setPath }) {
         }
         window.api.send("scpFile", "/deploy/points.lst", "/points.lst");
       });
+      msg=`P,${percToFieldX(curPath[0].CordX)},${percToFieldY(curPath[0].CordY)},${curPath[0].bearing},${curPath[0].velocity},${additionalText}\n`;
     } else {
       msg = `P,${percToFieldX(curPath[0].CordX)},${percToFieldY(curPath[0].CordY)},${curPath[0].bearing},${curPath[0].velocity},${additionalText}\n` + msg;
       window.api.send("writeToFile", `${pathSavePath}/paths/${name}`, msg.substring(0, msg.length - 1));
