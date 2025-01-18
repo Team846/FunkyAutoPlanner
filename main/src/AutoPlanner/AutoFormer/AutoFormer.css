@@ -29,7 +29,9 @@
     border-radius: 25px;
     border-color: grey;
     padding-left: 10px;
-    height: 15vh;
+    height: 30vh;
+    overflow-y: auto;
+    position: relative;
 }
 
 .box-desc {
@@ -39,6 +41,16 @@
 }
 
 .auto-box {
-    padding-top: 10px;
-    padding-bottom: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+}
+.drop-zone {
+    height: 3vh ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position:relative;
 }
