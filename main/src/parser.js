@@ -37,7 +37,7 @@ export async function parseAutoFile (msg) {
    for (var i=1; i<lines.length; i++){
       namedList.push(lines.at(i)?.split(',').at(1));
       if (lines.at(i)?.split(',').at(0)=='PATH' || lines.at(i)?.split(',').at(0)=='F' ){
-         window.api.send("readFromFile", `/visualizer/paths/${namedList[i-1]}`, "");
+         window.api.send("readFromAppFile", `/visualizer/paths/${namedList[i-1]}`, "");
          window.api.receive("fileData", (data) => {
              auto.push(parsePathFile(data));
          });

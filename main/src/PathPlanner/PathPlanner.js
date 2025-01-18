@@ -8,11 +8,13 @@ import PageChooser from "../PageChooser/PageChooser";
 import PathList from "./PathList/PathList";
 import "./PathPlanner.css";
 import { fieldToPercX, fieldToPercY, percToFieldX, percToFieldY } from "../util";
+import SaveToPath from "../AutoPlanner/SaveToPath/SaveToPath";
 
 function PathPlanner({ path, setPath }) {
   const [curPath, setCurPath] = useState([]);
   const [pointOfInterest, setPointOfInterest] = useState();
   const [name, setName] = useState("");
+  const [pathSavePath, setPathSavePath] = useState("");
   const [additionalText, setAdditionalText] = useState("");
 
   const [x, setX] = useState(0);
@@ -44,22 +46,21 @@ function PathPlanner({ path, setPath }) {
     if (curPath.length === 1) {
       // This is a point, not a path; save in points.lst
       const addendMsg = `N,${name},${percToFieldX(curPath[0].CordX)},${percToFieldY(curPath[0].CordY)},${curPath[0].bearing},${curPath[0].velocity}`;
-      window.api.send("readFromFile", "/deploy/points.lst", "");
+      window.api.send("readFromAppFile", "/visualizer/points.lst", "");
       window.api.receive("fileData", (data) => {
         if (data !== "") {
-          window.api.send("writeToFile", "/deploy/points.lst", data + "\n" + addendMsg);
+          window.api.send("writeToAppFile", "/visualizer/points.lst", data + "\n" + addendMsg);
         } else {
-          window.api.send("writeToFile", "/deploy/points.lst", addendMsg);
+          window.api.send("writeToAppFile", "/visualizer/points.lst", addendMsg);
         }
         window.api.send("scpFile", "/deploy/points.lst", "/points.lst");
       });
     } else {
       msg = `P,${percToFieldX(curPath[0].CordX)},${percToFieldY(curPath[0].CordY)},${curPath[0].bearing},${curPath[0].velocity},${additionalText}\n` + msg;
-      window.api.send("writeToFile", `/deploy/paths/${name}`, msg.substring(0, msg.length - 1));
+      window.api.send("writeToFile", `${pathSavePath}/paths/${name}`, msg.substring(0, msg.length - 1));
       window.api.send("scpFile", `/deploy/paths/${name}`, `/paths/${name}`);
     }
-    
-    window.api.send("writeToFile", `/visualizer/paths/${name}`, msg.substring(0, msg.length - 1));
+    window.api.send("writeToAppFile", `/visualizer/paths/${name}`, msg.substring(0, msg.length - 1));
   };
 
   const onPointClick = (i) => {
@@ -80,7 +81,8 @@ function PathPlanner({ path, setPath }) {
             <PathCreator setPath={setPath} path={path} create={create} save={savePath} name={name} setName={setName} additionalText={additionalText} setAdditionalText={setAdditionalText}/>
             <PointAdder path={curPath} setPath={setCurPath}/>
           </div>
-          <PathList setPath={setCurPath} setName={setName}/>
+        <SaveToPath text={pathSavePath} setText={setPathSavePath}/>
+        <PathList setPath={setCurPath} setName={setName}/>
         </div>
       </header>
     </div>

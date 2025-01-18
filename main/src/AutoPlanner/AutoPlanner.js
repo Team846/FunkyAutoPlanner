@@ -5,12 +5,14 @@ import AutoFormer from "./AutoFormer/AutoFormer"
 import AutoList from "./AutoList/AutoList";
 import PathList from "./PathList/PathList";
 import { Dispatch, SetStateAction, useState } from "react";
+import SaveToPath from "./SaveToPath/SaveToPath";
 
 function AutoPlanner({onPath, setOnPath}) {
 
   const [auto, setAuto] = useState([]);
   const [namedAuto, setNamedAuto] = useState([]);
-  const [name, setName] = useState("")
+  const [name, setName] = useState("");
+  const [autoSavePath, setAutoSavePath] = useState("");
 
   const createAuto =()=>{
     setNamedAuto([]);
@@ -41,7 +43,8 @@ function AutoPlanner({onPath, setOnPath}) {
       }
     }
     msg=msg.substring(0, msg.length-1);
-    window.api.send("writeToFile", `/deploy/scripts/${name}`, msg);
+    window.api.send("writeToFile", `${autoSavePath}/scripts/${name}`, msg);
+    window.api.send("writeToAppFile", `visualizer/scripts/${name}`, msg);
     createAuto();
     window.api.send("scpFile", `/deploy/scripts/${name}`, `/scripts/${name}`);
   }
@@ -51,9 +54,10 @@ function AutoPlanner({onPath, setOnPath}) {
       <header className="Auto-header">AutoPlanner
         <Field Auto={auto}/>
         <AutoFormer onPath={onPath} setOnPath={setOnPath} createAuto={createAuto} name={name} setName={setName} saveAuto={saveAuto}/>
+        <SaveToPath text={autoSavePath} setText={setAutoSavePath}/>
         <PathList setAuto={setAuto} setNamedAuto={setNamedAuto}/>
         <ActionList actionlist={["shoot", "prep_shoot", "a_prep_shoot", "deploy_intake", "auto_home"]} auto={auto} setAuto={setAuto} setNamedAuto={setNamedAuto}/>
-        <AutoList setAuto={setAuto} setNamedAuto={setNamedAuto}/>
+        <AutoList setAuto={setAuto} setNamedAuto={setNamedAuto} autoSavePath={autoSavePath}/>
       </header>
     </div>
   );
