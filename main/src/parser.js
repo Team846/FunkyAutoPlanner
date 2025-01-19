@@ -36,16 +36,17 @@ export async function parseAutoFile (msg) {
    const auto=[];
    for (var i=1; i<lines.length; i++){
       namedList.push(lines.at(i)?.split(',').at(1));
-      if (lines.at(i)?.split(',').at(0)=='PATH' || lines.at(i)?.split(',').at(0)=='F' ){
-         window.api.send("readFromFile", `/visualizer/paths/${namedList[i-1]}`, "");
+      if (lines.at(i)?.split(',').at(0)=='PATH' || lines.at(i)?.split(',').at(0)=='F' ){         
+         await sleep(1);
+         window.api.send("readFromAppFile", `/visualizer/paths/${namedList[i-1]}`, "");
+
          window.api.receive("fileData", (data) => {
-            console.log(data);
-             auto.push(parsePathFile(data));
+            auto.push(parsePathFile(data));
          });
          await sleep(1);
       }
       else{
-         await sleep(1);
+         await sleep(2);
          var k=-1
          while (auto.length+k==-1 || typeof auto[auto.length+k][0]== 'string'){
              k--;
@@ -55,5 +56,6 @@ export async function parseAutoFile (msg) {
          auto.push([namedList[i-1], x, y]);
       }
    }
+   await sleep(3);
    return [namedList, auto]
 }

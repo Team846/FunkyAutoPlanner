@@ -9,7 +9,7 @@ function PathList({setPath, setName}) {
 
     const loadPath =(name) => {
 
-        window.api.send("readFromFile", `/visualizer/paths/${name}`, "");
+        window.api.send("readFromAppFile", `/visualizer/paths/${name}`, "");
         window.api.receive("fileData", (data) => {
             console.log(data);
             setPath(parsePathFile(data));
