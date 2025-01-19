@@ -43,6 +43,7 @@ export async function parseAutoFile (msg) {
          window.api.receive("fileData", (data) => {
             auto.push(parsePathFile(data));
          });
+         await sleep(1);
       }
       else{
          await sleep(2);

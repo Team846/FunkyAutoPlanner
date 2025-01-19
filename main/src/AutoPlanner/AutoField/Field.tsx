@@ -5,6 +5,7 @@ import { useState } from "react";
 import PathLine from "./PathLine/PathLine";
 import { fieldToPercX, fieldToPercY } from "../../util";
 import { PointToBeMade } from "../../PathPlanner/PathField/Field";
+import PathPlaybacker from "../PathPlayback/PathPlayback"
 
 function Field({Auto}: {Auto: ((string | number)[] | PointToBeMade[])[]}) {
 
@@ -40,6 +41,7 @@ function Field({Auto}: {Auto: ((string | number)[] | PointToBeMade[])[]}) {
           );
         })}
         <img id="FieldImg" src="/field.png"/>
+        <PathPlaybacker Auto={Auto}/>
       </div>
     );
   }
