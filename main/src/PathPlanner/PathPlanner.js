@@ -16,6 +16,7 @@ function PathPlanner({ path, setPath }) {
   const [name, setName] = useState("");
   const [pathSavePath, setPathSavePath] = useState("");
   const [additionalText, setAdditionalText] = useState("");
+  const [refreshPaths, setRefreshPaths] = useState(false);
 
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
@@ -62,6 +63,7 @@ function PathPlanner({ path, setPath }) {
       window.api.send("scpFile", `/deploy/paths/${name}`, `/paths/${name}`);
     }
     window.api.send("writeToAppFile", `/visualizer/paths/${name}`, msg.substring(0, msg.length - 1));
+    setRefreshPaths((prev) => !prev);
   };
 
   const onPointClick = (i) => {
@@ -83,7 +85,7 @@ function PathPlanner({ path, setPath }) {
             <PointAdder path={curPath} setPath={setCurPath}/>
           </div>
         <SaveToPath text={pathSavePath} setText={setPathSavePath}/>
-        <PathList setPath={setCurPath} setName={setName}/>
+        <PathList setPath={setCurPath} setName={setName} refresh={refreshPaths}/>
         </div>
       </header>
     </div>

@@ -3,7 +3,7 @@ import "./PathList.css"
 import { parsePathFile } from "../../parser";
 import {useState, useEffect} from "react"
 
-function PathList({setPath, setName}) {
+function PathList({setPath, setName, refresh}) {
 
     const [paths, setPaths] = useState([]);
 
@@ -25,7 +25,7 @@ function PathList({setPath, setName}) {
             console.log(data);
             console.log("ewaoihgawouihg");
         });
-      }, []);
+      }, [refresh]);
 
     return (
         <div className="place-path">

@@ -2,24 +2,26 @@ import { Dispatch, SetStateAction, useState } from "react";
 import PageChooser from "../../PageChooser/PageChooser";
 import "./AutoFormer.css"
 
-function AutoFormer({onPath, setOnPath, createAuto, name, setName, saveAuto}:{onPath:boolean, setOnPath:Dispatch<SetStateAction<boolean>>, createAuto:Function, name:string, setName:Dispatch<SetStateAction<string>>, saveAuto:Function}) {
-    const [autoList, setAutoList] = useState<string[]>(["go forward", "go back", "jump", 'climb', 'dance', 'hop']);
-
+function AutoFormer({onPath, setOnPath, createAuto, name, setName, saveAuto, namedAutoList, setNamedAutoList, autoList, setAutoList}:{onPath:boolean, setOnPath:Dispatch<SetStateAction<boolean>>, createAuto:Function, name:string, setName:Dispatch<SetStateAction<string>>, saveAuto:Function, namedAutoList:string[], setNamedAutoList:Dispatch<SetStateAction<string[]>>, autoList:string[], setAutoList:Dispatch<SetStateAction<string[]>>}) {
     const handleDragStart = (e: React.DragEvent<HTMLDivElement>, index: number) => {
       e.dataTransfer.setData('ItemIndex', index.toString())
     }
     const handleDrop = (e:React.DragEvent<HTMLDivElement>, index:number) => {
       const ItemIndex = parseInt(e.dataTransfer.getData("ItemIndex"));
       if (ItemIndex === index) return;
+      const newNamedList = [...namedAutoList];
       const newList = [...autoList];
+      const [deletedNamedItem] = newNamedList.splice(ItemIndex, 1);
       const [deletedItem] = newList.splice(ItemIndex, 1);
+      newNamedList.splice(index, 0, deletedNamedItem);
       newList.splice(index, 0, deletedItem);
+      setNamedAutoList(newNamedList);
       setAutoList(newList);
     }
     const enableDropping = (e: React.DragEvent<HTMLDivElement>) => {
       e.preventDefault();
     };
-    
+
     return (
       <div className="AutoFormer">
         <header className="Auto-former-header">
@@ -34,8 +36,8 @@ function AutoFormer({onPath, setOnPath, createAuto, name, setName, saveAuto}:{on
         <div className="creator-box">
           <p>Creator</p> 
           <div className="auto-box" onDragOver={enableDropping} > 
-          {autoList.length > 0 ? (
-            autoList.map((item, index) => {
+          {namedAutoList.length > 0 ? (
+            namedAutoList.map((item, index) => {
               return (
                 <div key={item}>
                   <div
@@ -49,7 +51,7 @@ function AutoFormer({onPath, setOnPath, createAuto, name, setName, saveAuto}:{on
                     onDragStart={(e) => handleDragStart(e, index)}
                     onContextMenu={(e) => {
                       e.preventDefault();
-                      setAutoList((prevList) =>
+                      setNamedAutoList((prevList) =>
                         prevList.filter((e, i) => i !== index)
                       );
                     }}
@@ -62,11 +64,11 @@ function AutoFormer({onPath, setOnPath, createAuto, name, setName, saveAuto}:{on
           ) : (
             <span className="box-desc">Drag an auto to get started</span>
           )}
-          {autoList.length === 0 && (
+          {namedAutoList.length === 0 && (
             <div
               className="drop-zone"
               onDragOver={enableDropping}
-              onDrop={(e) => handleDrop(e, autoList.length)}
+              onDrop={(e) => handleDrop(e, namedAutoList.length)}
             >
             </div>
           )}

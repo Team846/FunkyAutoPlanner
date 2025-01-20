@@ -13,6 +13,7 @@ function AutoPlanner({onPath, setOnPath}) {
   const [namedAuto, setNamedAuto] = useState([]);
   const [name, setName] = useState("");
   const [autoSavePath, setAutoSavePath] = useState("");
+  const [refreshAutos, setRefreshAutos] = useState(false);
 
   const createAuto =()=>{
     setNamedAuto([]);
@@ -21,8 +22,6 @@ function AutoPlanner({onPath, setOnPath}) {
   }
 
   const saveAuto =()=>{
-    console.log(auto)
-    console.log(namedAuto)
     if (namedAuto.length<1){
       console.error("Need at least one point for an auto!");
       return;
@@ -47,6 +46,7 @@ function AutoPlanner({onPath, setOnPath}) {
     window.api.send("writeToAppFile", `visualizer/scripts/${name}`, msg);
     createAuto();
     window.api.send("scpFile", `/deploy/scripts/${name}`, `/scripts/${name}`);
+    setRefreshAutos((prev) => !prev);
   }
 
   return (
@@ -54,10 +54,10 @@ function AutoPlanner({onPath, setOnPath}) {
       <header className="Auto-header">AutoPlanner
         <Field Auto={auto}/>
         <SaveToPath text={autoSavePath} setText={setAutoSavePath}/>
-        <AutoFormer onPath={onPath} setOnPath={setOnPath} createAuto={createAuto} name={name} setName={setName} saveAuto={saveAuto}/>
+        <AutoFormer onPath={onPath} setOnPath={setOnPath} createAuto={createAuto} name={name} setName={setName} saveAuto={saveAuto} namedAutoList={namedAuto} setNamedAutoList={setNamedAuto} autoList={auto} setAutoList={setAuto}/>
         <PathList setAuto={setAuto} setNamedAuto={setNamedAuto}/>
         <ActionList actionlist={["shoot", "prep_shoot", "a_prep_shoot", "deploy_intake", "auto_home"]} auto={auto} setAuto={setAuto} setNamedAuto={setNamedAuto}/>
-        <AutoList setAuto={setAuto} setNamedAuto={setNamedAuto} autoSavePath={autoSavePath}/>
+        <AutoList setAuto={setAuto} setNamedAuto={setNamedAuto} autoSavePath={autoSavePath} refresh={refreshAutos}/>
       </header>
     </div>
   );

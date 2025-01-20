@@ -1,0 +1,5 @@
+0,2
+F,kSpeakerStart
+ACT,shoot
+ACT,prep_shoot
+PATH,crossField
