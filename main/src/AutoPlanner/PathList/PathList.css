@@ -1,7 +1,7 @@
 .PathList{
     position: absolute;
     border-radius: 2vw;
-    right: 18vw;
+    right: 19vw;
     vertical-align: text-top;
     border-style: solid;
     text-align: left;
@@ -10,8 +10,19 @@
     padding-left: 1.5vw;
     padding-top: 1vw;
     padding-bottom: 1vw;
-    margin-right: -4vw;
+    margin-right: -3vw;
     margin-left: 2vw;
-    margin-top: 2vw;
+    margin-top: 1vw;
     margin-bottom: 1vw;
 }
+
+.PathComponent {
+    background: hsl(0, 0%, 0%);
+    border-style: solid;
+    border-color: grey;
+    border-radius: 100vw;
+    margin: 1vw 0;
+    text-align: center;
+    justify-content: center;
+}
+
