@@ -12,7 +12,7 @@ interface IAutoConfig {
 function AutoConfig({onPath, setOnPath, actionList}: IAutoConfig) {
     return (
       <div style={{ display: 'flex', flexDirection: 'row'}} className="PathChooser">
-        <div style={{width: "20vw"}}>
+        <div style={{width: "100vw"}}>
           {/* <PathList /> */}
         </div>
         <div style={{ width: "40%", display: 'flex', flexDirection: 'column'}}>

@@ -1,8 +1,23 @@
 .path-chooser {
     background: transparent;
+    background-color: #000614;
     border-style: solid;
     border-radius: 20px 0px 0px 20px;
-    color: white;
+    color: #6f737b;
+    border-color: grey;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    top: 50px;
+}
+
+.auto-chooser {
+    background: transparent;
+    background-color: #000614;
+    border-style: solid;
+    border-radius: 0px 20px 20px 0px;
+    color: #6f737b;
     border-color: grey;
     padding-left: 15px;
     padding-right: 15px;
@@ -10,14 +25,16 @@
     padding-bottom: 10px;
 }
 
-.auto-chooser {
-    background: transparent;
-    border-style: solid;
-    border-radius: 0px 20px 20px 0px;
-    color: white;
-    border-color: grey;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+.path-chooser.active{
+    /*These were the colors on the figma!!!*/
+    background-color: #333843;
+    border-color: #a19aa6;
+    color: #d2cad1;
+}
+
+.auto-chooser.active {
+    /*These were the colors on the figma!!!*/
+    background-color: #333843;
+    border-color: #a19aa6;
+    color: #d2cad1;
 }

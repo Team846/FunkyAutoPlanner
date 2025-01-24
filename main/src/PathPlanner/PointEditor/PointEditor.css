@@ -3,12 +3,12 @@
     grid-column-end: 1;
     display: flex;
     flex-direction: column;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 0px;
+    margin-right: 25px;
     padding-left: 20px;
-    padding-right: 20px;
+    padding-right: 5px;
     border-width: 1px;
-    border-radius: 40px;
+    border-radius: 15px;
     border-color: grey;
     border-style: solid;
     margin-top: 10px;
@@ -21,8 +21,8 @@
     display: flex;
     flex-direction: column;
     margin-right: auto;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     justify-content: start;
 }
 
@@ -30,7 +30,7 @@
     display: flex;
     flex-direction: row;
     space-between: 5px;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .main-contain {

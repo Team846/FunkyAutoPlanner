@@ -41,8 +41,12 @@ function PathPlanner({path, setPath}: {path: boolean, setPath: Dispatch<SetState
           </div>
           <div className="place-path">
             <header>All Paths</header>
-            <div className="path-list-item">ITEM</div>
-            <div className="path-list-item">ITEM</div>
+            <div className="path-list-item">Two Piece Path</div>
+            <div className="path-list-item">Two Piece Path</div>
+            <div className="path-list-item">Two Piece Path</div>
+            <div className="path-list-item">Two Piece Path</div>
+            <div className="path-list-item">Two Piece Path</div>
+            <div className="path-list-item">Two Piece Path</div>
           </div>
         </div>
         {/* <PathList  /> */}
