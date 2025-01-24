@@ -51,14 +51,12 @@ function AutoPlanner({onPath, setOnPath}) {
 
   return (
     <div className="AutoPlanner">
-      <header className="Auto-header">AutoPlanner
         <Field Auto={auto}/>
         <SaveToPath text={autoSavePath} setText={setAutoSavePath}/>
         <AutoFormer onPath={onPath} setOnPath={setOnPath} createAuto={createAuto} name={name} setName={setName} saveAuto={saveAuto} namedAutoList={namedAuto} setNamedAutoList={setNamedAuto} autoList={auto} setAutoList={setAuto}/>
         <PathList setAuto={setAuto} setNamedAuto={setNamedAuto}/>
         <ActionList actionlist={["shoot", "prep_shoot", "a_prep_shoot", "deploy_intake", "auto_home"]} auto={auto} setAuto={setAuto} setNamedAuto={setNamedAuto}/>
         <AutoList setAuto={setAuto} setNamedAuto={setNamedAuto} autoSavePath={autoSavePath} refresh={refreshAutos}/>
-      </header>
     </div>
   );
 }

@@ -12,7 +12,8 @@ function PathList({setPath, setName, refresh}) {
         window.api.send("readFromAppFile", `/visualizer/paths/${name}`, "");
         window.api.receive("fileData", (data) => {
             console.log(data);
-            setPath(parsePathFile(data));
+            const newPath = parsePathFile(data);
+            setPath(newPath);
             setName(name);
         });
     };

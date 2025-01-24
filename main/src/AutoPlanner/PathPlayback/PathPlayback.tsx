@@ -65,6 +65,8 @@ function PathPlaybacker({Auto}: {Auto: ((string | number)[] | PointToBeMade[])[]
         stepIndex++;
       } else {
         clearInterval(interval);
+        let resetLocation = { x: -10, y: -10, bearing: -10 };
+        SetRobotLocation(resetLocation);
       }
     }, 20);  
   }

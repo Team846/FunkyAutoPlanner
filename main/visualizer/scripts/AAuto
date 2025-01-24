@@ -1,6 +1,0 @@
-0,2
-F,kSpeakerStart
-ACT,shoot
-PATH,krandom
-ACT,a_prep_shoot
-PATH,crossField
