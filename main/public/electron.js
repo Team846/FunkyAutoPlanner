@@ -49,6 +49,33 @@ ipcMain.on("writeToFile", (event, file, data) => {
     }
   });
 
+ipcMain.on("removeFileFromApp", (event, filePath) => {
+    try {
+        const fullFilePath = path.join(app.getAppPath(), filePath);
+        if (fs.existsSync(fullFilePath)) {
+            fs.unlinkSync(fullFilePath);
+        } else {
+            console.error('File does not exist:', filePath);
+        }
+    } catch (err) {
+        console.error('Error removing file:', err);
+    }
+}); 
+
+ipcMain.on("removeFile", (event, filePath) => {
+    try {
+        const fullFilePath = path.join(filePath);
+        console.log(fullFilePath);
+        if (fs.existsSync(fullFilePath)) {
+            fs.unlinkSync(fullFilePath);
+        } else {
+            console.error('File does not exist:', filePath);
+        }
+    } catch (err) {
+        console.error('Error removing file:', err);
+    }
+}); 
+
 ipcMain.on("writeToAppFile", (event, file, data) => {
     try {
     fs.writeFileSync(path.join(app.getAppPath(), file), data)

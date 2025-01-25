@@ -3,7 +3,7 @@ import "./PathList.css"
 import { parsePathFile } from "../../parser";
 import {useState, useEffect} from "react"
 
-function PathList({setPath, setName, refresh}) {
+function PathList({setPath, setName, refresh, pathSavePath}) {
 
     const [paths, setPaths] = useState([]);
 
@@ -28,11 +28,29 @@ function PathList({setPath, setName, refresh}) {
         });
       }, [refresh]);
 
+    const removePath = (name) => {
+      window.api.send("removeFileFromApp", `/visualizer/paths/${name}`);
+      window.api.send("removeFile", `${pathSavePath}/paths/${name}`);
+      setPaths((prevList) => prevList.filter((file) => file !== name));
+      };
+
     return (
         <div className="place-path">
           <header>All Paths</header>
           {paths.map((i, path) => {
-            return(<div className="path-list-item" onClick={()=>{loadPath(i)}}>{i}</div>);
+            return (
+              <div
+                key={path}
+                className="PathComponent"
+                onClick={() => { loadPath(i); }}
+                onContextMenu={(e) => {
+                  e.preventDefault(); 
+                  removePath(i);
+                }}
+              >
+                {i}
+              </div>
+            );
           })}
         </div>
     );

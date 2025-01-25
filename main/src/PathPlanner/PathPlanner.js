@@ -57,17 +57,13 @@ function PathPlanner({ path, setPath }) {
       window.api.receive("fileData", (data) => {
         let updatedData = "";
         if (data !== "") {
-          console.log("data", data);
           const lines = data.split("\n");
-          console.log("lines", lines);
           const filteredLines = lines.filter((line) => {
             const parts = line.split(",");
             return parts[1] !== name;
           });
-          console.log("filteredLines", filteredLines);
           filteredLines.push(addendMsg);
           updatedData = filteredLines.join("\n");
-          console.log("updatedData", updatedData);
         } else {
           updatedData = addendMsg;
         }
@@ -103,7 +99,7 @@ function PathPlanner({ path, setPath }) {
             <PointAdder path={curPath} setPath={setCurPath}/>
           </div>
         <SaveToPath text={pathSavePath} setText={setPathSavePath}/>
-        <PathList setPath={setCurPath} setName={setName} refresh={refreshPaths}/>
+        <PathList setPath={setCurPath} setName={setName} refresh={refreshPaths} pathSavePath={pathSavePath}/>
         </div>
       </header>
     </div>

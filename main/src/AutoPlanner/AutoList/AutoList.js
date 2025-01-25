@@ -30,12 +30,30 @@ function AutoList({setAuto, setNamedAuto, autoSavePath, refresh}) {
       });
     }
 
+    const removeAuto = (name) => {
+      window.api.send("removeFileFromApp", `/visualizer/scripts/${name}`);
+      window.api.send("removeFile", `${autoSavePath}/scripts/${name}`);
+      SetAutoList((prevList) => prevList.filter((file) => file !== name));
+      };
+
     return (
       <div className="AutoList">
         <header className="Path-list-header">AutoList
             {AutoList.map((value, index) => {
-                return(<div className="AutoComponent" onClick={()=>{loadAuto(value)}}>{value}</div>)
-            })
+                return (
+                  <div
+                    key={index}
+                    className="AutoComponent"
+                    onClick={() => { loadAuto(value); }}
+                    onContextMenu={(e) => {
+                      e.preventDefault(); 
+                      removeAuto(value);
+                    }}
+                  >
+                    {value}
+                  </div>
+                );
+              })
             }
         </header>
       </div>
