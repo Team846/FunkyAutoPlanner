@@ -17,7 +17,6 @@ function Field({Auto}: {Auto: ((string | number)[] | PointToBeMade[])[]}) {
             lastAction = lastAction + "," + value[0];
           }
           else if ((typeof value[0] == "string")) {
-            console.log(lastAction);
             lastAction = value[0];
           }
           prevValue = value;
