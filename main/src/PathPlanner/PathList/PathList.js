@@ -3,16 +3,17 @@ import "./PathList.css"
 import { parsePathFile } from "../../parser";
 import {useState, useEffect} from "react"
 
-function PathList({setPath, setName}) {
+function PathList({setPath, setName, refresh}) {
 
     const [paths, setPaths] = useState([]);
 
     const loadPath =(name) => {
 
-        window.api.send("readFromFile", `/visualizer/paths/${name}`, "");
+        window.api.send("readFromAppFile", `/visualizer/paths/${name}`, "");
         window.api.receive("fileData", (data) => {
             console.log(data);
-            setPath(parsePathFile(data));
+            const newPath = parsePathFile(data);
+            setPath(newPath);
             setName(name);
         });
     };
@@ -25,7 +26,7 @@ function PathList({setPath, setName}) {
             console.log(data);
             console.log("ewaoihgawouihg");
         });
-      }, []);
+      }, [refresh]);
 
     return (
         <div className="place-path">

@@ -6,4 +6,32 @@
     display: flex;
     flex-direction: row;
     width: 100vw;
+    justify-content: center;
+    vertical-align: middle;
+    align-items: center;
+}
+
+.place-path {
+    display: flex;
+    flex-direction: column;
+    border-width: 2px;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: grey;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    position: relative;
+    margin-left: 35px;
+    height: 275px;
+}
+
+.path-list-item {
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 20px;
+    border-width: 2px;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: grey;
 }

@@ -8,9 +8,9 @@ interface ModInterface {
 
 export default function ModifiedInputField({ unit, setField, field}: ModInterface) {
     return (
-        <div style={{borderWidth: "2px", marginRight: '10px', borderRadius: '9999px', borderColor: 'white', display: 'flex', flexDirection: 'row'}}>
+        <div className="mod-ovr">
             <input className="mod-input" onChange={e => setField(e.target.value)} value={field} /> 
-            <span>{unit}</span>
+            <span className="span-label">{unit}</span>
         </div>
     )
 }

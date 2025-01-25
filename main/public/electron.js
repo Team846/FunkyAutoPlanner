@@ -44,13 +44,21 @@ app.on('activate', () => {
 
 ipcMain.on("writeToFile", (event, file, data) => {
     try {
+    fs.writeFileSync(file, data)
+    } catch (err) {
+    console.error('Error writing to file:', err);
+    }
+  });
+
+ipcMain.on("writeToAppFile", (event, file, data) => {
+    try {
     fs.writeFileSync(path.join(app.getAppPath(), file), data)
     } catch (err) {
     console.error('Error writing to file:', err);
     }
   });
 
-ipcMain.on("readFromFile", (event, file, data) => {
+ipcMain.on("readFromAppFile", (event, file, data) => {
     try {
         const data = fs.readFileSync(path.join(app.getAppPath(), file), 'utf8');
         win.webContents.send("fileData", data);
@@ -58,6 +66,15 @@ ipcMain.on("readFromFile", (event, file, data) => {
         console.error('Error reading file:', err);
     }
   });
+
+ipcMain.on("readFromFile", (event, file, data) => {
+try {
+    const data = fs.readFileSync(file, 'utf8');
+    win.webContents.send("fileData", data);
+} catch (err) {
+    console.error('Error reading file:', err);
+}
+});
 
 
 ipcMain.on("allFilesInDir", (event, folder, data) => {

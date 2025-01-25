@@ -11,6 +11,10 @@
     border-radius: 40px;
     border-color: grey;
     border-style: solid;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: left;
 }
 
 .item {
@@ -35,6 +39,5 @@
 }
 
 .pos-label {
-    padding-left: 0px;
-    padding-right: 0px;
+    color: white;
 }

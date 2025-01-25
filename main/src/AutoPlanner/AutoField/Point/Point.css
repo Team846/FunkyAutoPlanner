@@ -4,6 +4,7 @@
     height: .6vw;
     width: .6vw;
     position:absolute;
+    z-index: 2;
 }
 
 .Robot{

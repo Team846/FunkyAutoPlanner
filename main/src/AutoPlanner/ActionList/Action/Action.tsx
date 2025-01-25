@@ -24,7 +24,8 @@ function Action({action, auto, setAuto, setNamedAuto} : {action:string, auto:((s
     }
 
     return (
-      <div className="ActionComponent" key={action} onClick={handleClick}>{action}
+      <div className="ActionComponent" key={action} onClick={handleClick}>
+        <span>{action}</span>
       </div>
     );
   }

@@ -1,19 +1,28 @@
 .PathList{
-    background: hsl(0, 0%, 55%);
     position: absolute;
-    padding: 1vw;
-    margin: 1vw;
     border-radius: 2vw;
-    right: 30vw;
+    right: 19vw;
     vertical-align: text-top;
+    border-style: solid;
+    text-align: left;
+    border-color: grey;
+    padding-right: 7vw;
+    padding-left: 1.5vw;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    margin-right: -3vw;
+    margin-left: 2vw;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
 }
-.PathComponent{
-    background: hsl(21, 9%, 30%);
+
+.PathComponent {
+    background: hsl(0, 0%, 0%);
+    border-style: solid;
+    border-color: grey;
     border-radius: 100vw;
-    height: 1vw;
-    width: 10vw;
-    padding:.2%;
-    
-    margin:1vw;
-    position:relative;
+    margin: 1vw 0;
+    text-align: center;
+    justify-content: center;
 }
+
