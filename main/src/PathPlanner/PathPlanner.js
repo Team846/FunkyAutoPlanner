@@ -28,7 +28,13 @@ function PathPlanner({ path, setPath }) {
     setAdditionalText("");  
   };
 
-  const savePath = () => {
+  async function savePath() {
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
+   window.api.send("readFromAppFile", `SavePath.txt`);
+    window.api.receive("fileData", (data) => {
+      setPathSavePath(data);
+    });
+    await sleep(1);
     if (name === "") {
       console.error("Path must have a name!");
       return;
@@ -40,23 +46,35 @@ function PathPlanner({ path, setPath }) {
 
     let msg = "";
 
-    for (let i = 1; i < curPath.length; i++) {
+    for (let i = 0; i < curPath.length; i++) {
       msg += `P,${percToFieldX(curPath[i].CordX)},${percToFieldY(curPath[i].CordY)},${curPath[i].bearing},${curPath[i].velocity}\n`;
     }
     
     if (curPath.length === 1) {
-      // This is a point, not a path; save in points.lst
+      //This is a point not a path, save in points.lst
       const addendMsg = `N,${name},${percToFieldX(curPath[0].CordX)},${percToFieldY(curPath[0].CordY)},${curPath[0].bearing},${curPath[0].velocity}`;
       window.api.send("readFromAppFile", "/visualizer/points.lst", "");
       window.api.receive("fileData", (data) => {
+        let updatedData = "";
         if (data !== "") {
-          window.api.send("writeToAppFile", "/visualizer/points.lst", data + "\n" + addendMsg);
+          console.log("data", data);
+          const lines = data.split("\n");
+          console.log("lines", lines);
+          const filteredLines = lines.filter((line) => {
+            const parts = line.split(",");
+            return parts[1] !== name;
+          });
+          console.log("filteredLines", filteredLines);
+          filteredLines.push(addendMsg);
+          updatedData = filteredLines.join("\n");
+          console.log("updatedData", updatedData);
         } else {
-          window.api.send("writeToAppFile", "/visualizer/points.lst", addendMsg);
+          updatedData = addendMsg;
         }
+        window.api.send("writeToAppFile", "/visualizer/points.lst", updatedData);
+        window.api.send("writeToFile", `${pathSavePath}/points.lst`, updatedData);
         window.api.send("scpFile", "/deploy/points.lst", "/points.lst");
-      });
-      msg=`P,${percToFieldX(curPath[0].CordX)},${percToFieldY(curPath[0].CordY)},${curPath[0].bearing},${curPath[0].velocity},${additionalText}\n`;
+    });
     } else {
       msg = `P,${percToFieldX(curPath[0].CordX)},${percToFieldY(curPath[0].CordY)},${curPath[0].bearing},${curPath[0].velocity},${additionalText}\n` + msg;
       window.api.send("writeToFile", `${pathSavePath}/paths/${name}`, msg.substring(0, msg.length - 1));

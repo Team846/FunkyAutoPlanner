@@ -32,6 +32,7 @@
     height: 30vh;
     overflow-y: auto;
     position: relative;
+    color: white;
 }
 
 .box-desc {
@@ -44,7 +45,7 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
-    gap: 15px; 
+    gap: 2px; 
 }
 .drop-zone {
     height: 3vh ;
@@ -53,4 +54,22 @@
     justify-content: center;
     text-align: center;
     position:relative;
+}
+.auto-namer {
+    width: 120px;       
+    height: 20px;       
+    padding: 5px;       
+    font-size: 12px;    
+    border: 1px solid gray;
+}
+.auto-part{
+    background: hsl(0, 0%, 0%);
+    border-style: solid;
+    border-color: grey;
+    border-radius: 100vw;
+    border-width: 0.5px;
+    margin: 0vw 0;
+    text-align: center;
+    justify-content: center;
+    width: 200px;
 }

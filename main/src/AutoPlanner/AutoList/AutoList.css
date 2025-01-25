@@ -2,13 +2,16 @@
     background: hsl(0, 0%, 0%);
     position: absolute;
     padding: 1vw;
+    padding-left: 0.5vw;
     margin: 1vw;
     border-radius: 2vw;
-    right: 0vw;
+    right: -1vw;
     vertical-align: text-top;
     text-align: left;
     border-style: solid;
     border-color: grey;
+    overflow-y: auto;
+    max-height: 300px;  
 }
 .AutoComponent{
     background: hsl(0, 0%, 0%);

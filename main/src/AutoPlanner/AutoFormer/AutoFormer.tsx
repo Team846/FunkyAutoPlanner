@@ -47,7 +47,7 @@ function AutoFormer({onPath, setOnPath, createAuto, name, setName, saveAuto, nam
             <div className="create-path" onClick={()=>{createAuto()}}> Create Path</div>
             <PageChooser onPath={onPath} setOnPath={setOnPath} />
             <div className="save-path" onClick={()=>{saveAuto()}}>Save Auto</div>
-            <input value={name} onChange={evt => setName(evt.target.value)}/>
+            <input className="auto-namer" value={name} onChange={evt => setName(evt.target.value)} placeholder="Auto Name here"/>
           </div>
         </header>
         
@@ -64,7 +64,7 @@ function AutoFormer({onPath, setOnPath, createAuto, name, setName, saveAuto, nam
                   >
                   </div>
                   <div
-                    className="Action"
+                    className="auto-part"
                     draggable
                     onDragStart={(e) => handleDragStart(e, index)}
                     onContextMenu={(e) => {

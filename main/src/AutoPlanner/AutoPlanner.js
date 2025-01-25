@@ -22,6 +22,10 @@ function AutoPlanner({onPath, setOnPath}) {
   }
 
   const saveAuto =()=>{
+    window.api.send("readFromAppFile", `SavePath.txt`);
+    window.api.receive("fileData", (data) => {
+      setAutoSavePath(data);
+    });
     if (namedAuto.length<1){
       console.error("Need at least one point for an auto!");
       return;
