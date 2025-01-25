@@ -28,7 +28,6 @@ function createWindow() {
             app.quit()
         }
     });
-    console.log("hi");
 }
 app.whenReady().then(createWindow);
 app.on('window-all-closed', () => {

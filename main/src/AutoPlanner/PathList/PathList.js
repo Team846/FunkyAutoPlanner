@@ -17,7 +17,6 @@ function PathList({setAuto, setNamedAuto}) {
     const addPath=(name)=>{
       window.api.send("readFromAppFile", `/visualizer/paths/${name}`, "");
       window.api.receive("fileData", (data) => {
-        //console.log(name);
         setAuto((prevAuto) => [
           ...prevAuto, 
           parsePathFile(data)
