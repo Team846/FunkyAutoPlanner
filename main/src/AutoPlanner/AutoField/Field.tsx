@@ -7,11 +7,19 @@ import { fieldToPercX, fieldToPercY } from "../../util";
 import { PointToBeMade } from "../../PathPlanner/PathField/Field";
 import PathPlaybacker from "../PathPlayback/PathPlayback"
 
-function Field({Auto}: {Auto: ((string | number)[] | PointToBeMade[])[]}) {  
-
+function Field({Auto}: {Auto: ((string | number)[] | PointToBeMade[])[]}) {
+    var lastAction : string;
+    var prevValue :((string | number)[] | PointToBeMade[]) = [];
     return (
       <div className="Field">
         {Auto.map((value, index) => {
+          if ((typeof value[0] == "string") && (typeof prevValue[0]=="string")) {
+            lastAction = lastAction + "," + value[0];
+          }
+          else if ((typeof value[0] == "string")) {
+            lastAction = value[0];
+          }
+          prevValue = value;
           return (
             <>
               {typeof value[0]!="string" ? 
@@ -30,11 +38,10 @@ function Field({Auto}: {Auto: ((string | number)[] | PointToBeMade[])[]}) {
                       <PathLine pX={rpPrev.CordX} pY={rpPrev.CordY} cX={rP.CordX} cY={rP.CordY}/>
                     </>)
                   }
-                }) :
-                
+                }) : (
                   <Action key={index} x={Number(value[1])} 
                                       y={Number(value[2])}
-                                      actionName={value[0]}/>
+                                      actionName={lastAction}/>)
                 
               }
             </>

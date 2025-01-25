@@ -1,7 +1,6 @@
 import "./PathLine.css"
 
 function PathLine({pX, pY, cX, cY} : {pX:number, pY:number, cX:number, cY: number}) {
-  console.log("transform:", (Math.atan2((cY-pY)*.2933, (cX-pX)*.8)*180/3.1416));
   pY = pY + 1.02;
   cY = cY + 1.02;
   pX = pX + 0.375;

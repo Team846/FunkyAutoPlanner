@@ -32,7 +32,6 @@ function PathPlaybacker({Auto}: {Auto: ((string | number)[] | PointToBeMade[])[]
               var angle = Math.atan2(yTotal, xTotal);
               var x = 0.1 * Math.cos(angle) / 0.8;
               var y = 0.1 * Math.sin(angle) / (0.8 * 0.367);
-              console.log(Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)));
               if (rP.bearing - rpPrev.bearing <= 180) {
                 var bearing_change = (rP.bearing - rpPrev.bearing)/(length/0.1); 
               }
