@@ -5,37 +5,42 @@ import { PointToBeMade } from "../../PathPlanner/PathField/Field";
 
 function AutoFormer({onPath, setOnPath, createAuto, name, setName, saveAuto, namedAutoList, setNamedAutoList, autoList, setAutoList}:{onPath:boolean, setOnPath:Dispatch<SetStateAction<boolean>>, createAuto:Function, name:string, setName:Dispatch<SetStateAction<string>>, saveAuto:Function, namedAutoList:string[], setNamedAutoList:Dispatch<SetStateAction<string[]>>, autoList:(string|number[]|PointToBeMade[])[], setAutoList:Dispatch<SetStateAction<(string|number[]|PointToBeMade[])[]>>}) {
     const handleDragStart = (e: React.DragEvent<HTMLDivElement>, index: number) => {
-      e.dataTransfer.setData('ItemIndex', index.toString())
+        e.dataTransfer.setData('ItemIndex', index.toString())
     }
-    const handleDrop = (e:React.DragEvent<HTMLDivElement>, index:number) => {
+    const handleDrop = (e: React.DragEvent<HTMLDivElement>, index: number) => {
       const ItemIndex = parseInt(e.dataTransfer.getData("ItemIndex"));
       if (ItemIndex === index) return;
-
+    
       const newNamedList = [...namedAutoList];
       const newList = [...autoList];
+    
       const [deletedNamedItem] = newNamedList.splice(ItemIndex, 1);
-      const [deletedItem] = newList.splice(ItemIndex, 1)
-
-      let nearestPathCoords = null
-      for (let i = index-1; i>=0; i--){
-        const item = newList[i]
-        if (Array.isArray(item) && item[item.length-1] instanceof PointToBeMade){
-          nearestPathCoords = item[item.length-1]
-          break;
+      const [deletedItem] = newList.splice(ItemIndex, 1);
+    
+      let adjustedIndex = index;
+      if (ItemIndex < index) {
+        adjustedIndex--;
+      }
+      newNamedList.splice(adjustedIndex, 0, deletedNamedItem);
+      newList.splice(adjustedIndex, 0, deletedItem);
+    
+      let lastPathPoint: PointToBeMade | null = null;
+      for (let i = 0; i < newList.length; i++) {
+        let item = newList[i];
+        if (Array.isArray(item) && item[item.length - 1] instanceof PointToBeMade) {
+          lastPathPoint = item[item.length - 1] as PointToBeMade;
+        } else if (Array.isArray(item) && typeof item[0] === "string") {
+          if (lastPathPoint) {
+            item[1] = lastPathPoint.CordX;
+            item[2] = lastPathPoint.CordY;
+          }
         }
       }
-      if (Array.isArray(deletedItem) && typeof deletedItem[0] === "string"){
-        const endCoord = nearestPathCoords;
-        if (endCoord instanceof PointToBeMade){
-        deletedItem[1] = endCoord.CordX
-        deletedItem[2] = endCoord.CordY;
-        }
-      }
-      newNamedList.splice(index, 0, deletedNamedItem);
-      newList.splice(index, 0, deletedItem);
       setNamedAutoList(newNamedList);
       setAutoList(newList);
-    }
+
+    };
+    
     const enableDropping = (e: React.DragEvent<HTMLDivElement>) => {
       e.preventDefault();
     };
@@ -56,28 +61,47 @@ function AutoFormer({onPath, setOnPath, createAuto, name, setName, saveAuto, nam
           <div className="auto-box" onDragOver={enableDropping} > 
           {namedAutoList.length > 0 ? (
             namedAutoList.map((item, index) => {
-              return (
-                <div key={item}>
-                  <div
-                    className="drop-zone"
-                    onDrop={(e) => handleDrop(e, index)}
-                  >
+              if (index != 0) {
+                return (
+                  <div key={item}>
+                    <div
+                      className="drop-zone"
+                      onDrop={(e) => handleDrop(e, index)}
+                    >
+                    </div>
+                    <div
+                      className="auto-part"
+                      draggable
+                      onDragStart={(e) => handleDragStart(e, index)}
+                      onContextMenu={(e) => {
+                        e.preventDefault();
+                        setNamedAutoList((prevList) =>
+                          prevList.filter((e, i) => i !== index)
+                        );
+                      }}
+                    >
+                      {item}
+                    </div>
                   </div>
-                  <div
-                    className="auto-part"
-                    draggable
-                    onDragStart={(e) => handleDragStart(e, index)}
-                    onContextMenu={(e) => {
-                      e.preventDefault();
-                      setNamedAutoList((prevList) =>
-                        prevList.filter((e, i) => i !== index)
-                      );
-                    }}
-                  >
-                    {item}
+                );
+              }
+              else {
+                return (
+                  <div key={item}>
+                    <div
+                      className="drop-zone"
+                      onDrop={(e) => handleDrop(e, index)}
+                    >
+                    </div>
+                    <div
+                      className="auto-part"
+                    >
+                      {item}
+                    </div>
                   </div>
-                </div>
-              );
+                );
+              }
+              
             })
           ) : (
             <span className="box-desc">Drag an auto to get started</span>

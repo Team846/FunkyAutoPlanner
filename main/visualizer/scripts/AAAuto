@@ -1,0 +1,7 @@
+0,2
+F,cpath
+ACT,shoot
+ACT,prep_shoot
+PATH,dpath
+ACT,a_prep_shoot
+ACT,deploy_intake

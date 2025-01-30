@@ -52,7 +52,6 @@ function AutoPlanner({onPath, setOnPath}) {
     window.api.send("scpFile", `/deploy/scripts/${name}`, `/scripts/${name}`);
     setRefreshAutos((prev) => !prev);
   }
-
   return (
     <div className="AutoPlanner">
         <Field Auto={auto}/>

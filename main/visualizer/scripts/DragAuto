@@ -1,0 +1,6 @@
+0,2
+F,cpath
+PATH,dpath
+ACT,a_prep_shoot
+ACT,deploy_intake
+ACT,auto_home
