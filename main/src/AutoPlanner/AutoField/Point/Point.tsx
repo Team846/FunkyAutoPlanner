@@ -5,14 +5,14 @@ function Point({x, y, bearing} : {x:number, y:number, bearing:number}) {
       <>
       <div className="Robot"           
       style={{
-        left: `${x-1.65}%`,
-        top: `${y-4.49}%`, 
+        left: `${x-2.67}%`,
+        top: `${y-5.65}%`, 
         transform: `rotate(${bearing}deg)`}}>
       </div>  
       <div className="Point"          
       style={{
-        left: `${x-.375}%`,
-        top: `${y-1.02}%`}}>
+        left: `${x-0.4}%`,
+        top: `${y-0.9}%`}}>
       </div> 
       </>
     );

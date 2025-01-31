@@ -79,6 +79,9 @@ function AutoFormer({onPath, setOnPath, createAuto, name, setName, saveAuto, nam
                         setNamedAutoList((prevList) =>
                           prevList.filter((e, i) => i !== index)
                         );
+                        setAutoList((prevList) =>
+                          prevList.filter((e, i) => i !== index)
+                        );
                       }}
                     >
                       {item}

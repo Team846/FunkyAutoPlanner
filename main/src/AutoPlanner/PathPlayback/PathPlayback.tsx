@@ -26,19 +26,19 @@ function PathPlaybacker({Auto}: {Auto: ((string | number)[] | PointToBeMade[])[]
             else{  
               var prevPoint = value[r-1];
               var rpPrev = prevPoint as PointToBeMade;
-              var yTotal = (rP.CordY-rpPrev.CordY) * 0.8 * 0.367;
-              var xTotal = (rP.CordX-rpPrev.CordX) * 0.8;
+              var yTotal = (rP.CordY-rpPrev.CordY) * 0.6987 * 0.6;
+              var xTotal = (rP.CordX-rpPrev.CordX) * 0.6987;
               var length = Math.sqrt(Math.pow((xTotal), 2)+ Math.pow(yTotal, 2));
               var angle = Math.atan2(yTotal, xTotal);
-              var x = 0.1 * Math.cos(angle) / 0.8;
-              var y = 0.1 * Math.sin(angle) / (0.8 * 0.367);
+              var x = 0.2 * Math.cos(angle) / 0.6987;
+              var y = 0.2 * Math.sin(angle) / (0.6987 * 0.6);
               if (rP.bearing - rpPrev.bearing <= 180) {
                 var bearing_change = (rP.bearing - rpPrev.bearing)/(length/0.1); 
               }
               else {
                 var bearing_change = (rP.bearing-rpPrev.bearing - 360)/(length/0.1); 
               }
-              for (let i = 0; i < (length/0.1); i++) {
+              for (let i = 0; i < (length/0.2); i++) {
                 accumulatedLocation = {
                   x: accumulatedLocation.x + x,
                   y: accumulatedLocation.y + y,
@@ -67,7 +67,7 @@ function PathPlaybacker({Auto}: {Auto: ((string | number)[] | PointToBeMade[])[]
         let resetLocation = { x: -10, y: -10, bearing: -10 };
         SetRobotLocation(resetLocation);
       }
-    }, 20);  
+    }, 10);  
   }
 
 

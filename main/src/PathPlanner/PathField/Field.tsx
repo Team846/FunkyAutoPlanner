@@ -7,8 +7,8 @@ export class PointToBeMade {
   constructor(x: number, y: number, bearing: number, velocity: number, index: number) {
     x = (100 * x) / window.innerWidth;
     y = (100 * y) / window.innerWidth;
-    this.CordX = (100 * (x - 10)) / 80;
-    this.CordY = (100 * y) / 29.33;
+    this.CordX = (100 * (x - 15.06)) / 69.87;
+    this.CordY = (100 * y) / 32;
     this.bearing = bearing;
     this.velocity = velocity;
     this.index = index;
@@ -43,7 +43,7 @@ function Field({listOfPoints, setListOfPoints, onPointClick,}: {listOfPoints: Po
       <img
         onClick={handleFieldClick}
         id="FieldImg"
-        src="../build/field.png"
+        src="../build/2025field.png"
       />
       <ul>
         {listOfPoints.map((pnt, i) => (

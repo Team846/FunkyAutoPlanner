@@ -5,8 +5,8 @@ function Action({x, y, actionName} : {x:number, y:number, actionName:string}) {
       <div 
         className="Action"                 
         style={{
-          left: `${x-.5}%`,
-          top: `${y-1.5}%`
+          left: `${x+0.6}%`,
+          top: `${y-2.5}%` 
         }}
       >
         {actionName}

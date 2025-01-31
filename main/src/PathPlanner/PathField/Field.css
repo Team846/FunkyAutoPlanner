@@ -1,15 +1,15 @@
 #FieldImg{
-    width: 80vw;
-    height:29.33vw;
+    width: 69.87vw;
+    height:32vw;
     user-select: none;
 }
 
 .Field{
-    width: 80vw;
+    width: 69.87vw;
     /* left:10vw; */
     /* height: 29.33vh;  */
-    margin-left: 10vw;
-    margin-right: 10vw;
+    margin-left: 15.06vw;
+    margin-right: 15.06vw;
     position:relative;
     user-select: none;
 }

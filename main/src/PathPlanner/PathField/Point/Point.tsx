@@ -31,8 +31,8 @@ function Point({x, y, bearing, onClick, index, updatePointPosition}: {x: number;
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (pressed) {
-      const dx = (100 * (event.clientX - startDrag.x)) / (0.8 * window.innerWidth);
-      const dy = (100 * (event.clientY - startDrag.y)) / (0.2933 * window.innerWidth);
+      const dx = (100 * (event.clientX - startDrag.x)) / (0.6987 * window.innerWidth);
+      const dy = (100 * (event.clientY - startDrag.y)) / (0.32 * window.innerWidth);
 
       updatePointPosition(index, { x: x + dx, y: y + dy });
 
@@ -54,8 +54,8 @@ function Point({x, y, bearing, onClick, index, updatePointPosition}: {x: number;
         onMouseMove={handleMouseMove}
         onClick={() => onClick(index)}
         style={{
-          left: `${x - 1.275}%`,
-          top: `${y - 3.47}%`,
+          left: `${x - (2.67)}%`,
+          top: `${y - (5.65)}%`,
           transform: `rotate(${bearing}deg)`,
         }}
       />
@@ -66,8 +66,8 @@ function Point({x, y, bearing, onClick, index, updatePointPosition}: {x: number;
         onMouseMove={handleMouseMove}
         onClick={() => onClick(index)}
         style={{
-          left: `${x}%`,
-          top: `${y}%`,
+          left: `${x-0.4}%`,
+          top: `${y-0.9}%`,
         }}
       />
     </>

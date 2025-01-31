@@ -48,7 +48,7 @@ function Field({Auto}: {Auto: ((string | number)[] | PointToBeMade[])[]}) {
             </>
           );
         })}
-        <img id="FieldImg" src="../build/field.png"/>
+        <img id="FieldImg" src="../build/2025field.png"/>
         <PathPlaybacker Auto={Auto}/>
       </div>
     );
