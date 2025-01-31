@@ -15,8 +15,8 @@ function PointEditor({pointOfInterest, path, setPath, x, setX, y, setY, v, setV,
   const savePoint =() =>{
     if (pointOfInterest!=undefined){
       let tempPath=[...path]
-      tempPath[pointOfInterest].CordX=fieldToPercX(x);
-      tempPath[pointOfInterest].CordY=fieldToPercY(y);
+      tempPath[pointOfInterest].CordX=fieldToPercX(10*x/10);
+      tempPath[pointOfInterest].CordY=fieldToPercY(10*y/10);
       tempPath[pointOfInterest].velocity=v;
       tempPath[pointOfInterest].bearing=r;
       setPath(tempPath);

@@ -13,6 +13,7 @@ function createWindow() {
         slashes: true,
     });
     win = new BrowserWindow({
+        icon: '../build/favicon.ico',
         width: 800,
         height: 800,
         webPreferences: {
