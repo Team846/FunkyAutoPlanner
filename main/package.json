@@ -56,27 +56,37 @@
     "electron": "32.1.2",
     "electron-builder": "^25.1.8"
   },
+  "repository": {
+    "type": "git",
+    "url": "{ https://github.com/Team846/FunkyAutoPlanner }"
+  },
   "build": {
+    "asar": false, 
     "mac": {
       "publish": {
         "provider": "github",
-        "owner": "Team846",
-        "repo": "FunkyAutoPlanner",
+        "host":  "{ github.com }",
+        "owner": "{ Team846 }",
+        "repo": "{ FunkyAutoPlanner }",
+        "releaseType": "release", 
         "private": true,
         "token": ""
       },
       "target": {
         "target": "default",
         "arch": [
-          "arm64"
+          "x64", "arm64"
         ]
       }
     },
     "win": {
       "publish": {
         "provider": "github",
-        "owner": "Team846",
-        "repo": "FunkyAutoPlanner"
+        "host":  "{ github.com }",
+        "owner": "{ Team846 }",
+        "repo": "{ FunkyAutoPlanner }",
+        "releaseType": "release", 
+        "token": ""
       }
     },
     "files": [
@@ -86,8 +96,12 @@
     ],
     "publish": {
       "provider": "github",
+      "host":  "{ github.com }",
+      "owner": "{ Team846 }",
+      "repo": "{ FunkyAutoPlanner }",
+      "releaseType": "release", 
       "private": true,
-      "owner": "Team846"
+      "token": ""
     }
   }
 }

@@ -21,24 +21,25 @@ function AutoFormer({onPath, setOnPath, createAuto, name, setName, saveAuto, nam
       if (ItemIndex < index) {
         adjustedIndex--;
       }
-      newNamedList.splice(adjustedIndex, 0, deletedNamedItem);
-      newList.splice(adjustedIndex, 0, deletedItem);
-    
-      let lastPathPoint: PointToBeMade | null = null;
-      for (let i = 0; i < newList.length; i++) {
-        let item = newList[i];
-        if (Array.isArray(item) && item[item.length - 1] instanceof PointToBeMade) {
-          lastPathPoint = item[item.length - 1] as PointToBeMade;
-        } else if (Array.isArray(item) && typeof item[0] === "string") {
-          if (lastPathPoint) {
-            item[1] = lastPathPoint.CordX;
-            item[2] = lastPathPoint.CordY;
+      if (adjustedIndex != 0) {
+        newNamedList.splice(adjustedIndex, 0, deletedNamedItem);
+        newList.splice(adjustedIndex, 0, deletedItem);
+      
+        let lastPathPoint: PointToBeMade | null = null;
+        for (let i = 0; i < newList.length; i++) {
+          let item = newList[i];
+          if (Array.isArray(item) && item[item.length - 1] instanceof PointToBeMade) {
+            lastPathPoint = item[item.length - 1] as PointToBeMade;
+          } else if (Array.isArray(item) && typeof item[0] === "string") {
+            if (lastPathPoint) {
+              item[1] = lastPathPoint.CordX;
+              item[2] = lastPathPoint.CordY;
+            }
           }
         }
+        setNamedAutoList(newNamedList);
+        setAutoList(newList);
       }
-      setNamedAutoList(newNamedList);
-      setAutoList(newList);
-
     };
     
     const enableDropping = (e: React.DragEvent<HTMLDivElement>) => {

@@ -3,22 +3,20 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import "./AutoList.css"
 import { parseAutoFile, parsePathFile } from "../../parser";
 
-function AutoList({setAuto, setNamedAuto, autoSavePath, refresh}) {
+function AutoList({setAuto, setNamedAuto, autoSavePath, refresh, setName}) {
 
     const [AutoList, SetAutoList] = useState([]);
 
-
-    const sleep = ms => new Promise(r => setTimeout(r, ms));
-
     useEffect( () => {
-      window.api.send("allFilesInDir2", `/visualizer/scripts/`, "");
+      window.api.send("allFilesInDir2", `../build/visualizer/scripts/`, "");
       window.api.receive("allFilesInDirData2", (data) => {
           SetAutoList(data);
       });
     }, [refresh]);
 
     const loadAuto=(name)=>{
-      window.api.send("readFromAppFile", `visualizer/scripts/${name}`, "");
+      setName(name);
+      window.api.send("readFromAppFile", `../build/visualizer/scripts/${name}`, "");
       window.api.receive("fileData", async (data) => {
 
         parseAutoFile(data).then((res) => {
@@ -26,13 +24,14 @@ function AutoList({setAuto, setNamedAuto, autoSavePath, refresh}) {
         setAuto(res[1]);
 
         setNamedAuto(res[0]);
+
         });
       });
     }
 
     const removeAuto = (name) => {
-      window.api.send("removeFileFromApp", `/visualizer/scripts/${name}`);
-      window.api.send("removeFile", `${autoSavePath}/scripts/${name}`);
+      window.api.send("removeFileFromApp", `../build/visualizer/scripts/${name}`);
+      window.api.send("removeFile", `${autoSavePath}/autos/scripts/${name}`);
       SetAutoList((prevList) => prevList.filter((file) => file !== name));
       };
 

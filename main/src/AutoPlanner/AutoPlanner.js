@@ -22,7 +22,7 @@ function AutoPlanner({onPath, setOnPath}) {
   }
 
   const saveAuto =()=>{
-    window.api.send("readFromAppFile", `SavePath.txt`);
+    window.api.send("readFromAppFile", `../build/SavePath.txt`);
     window.api.receive("fileData", (data) => {
       setAutoSavePath(data);
     });
@@ -46,10 +46,10 @@ function AutoPlanner({onPath, setOnPath}) {
       }
     }
     msg=msg.substring(0, msg.length-1);
-    window.api.send("writeToFile", `${autoSavePath}/scripts/${name}`, msg);
-    window.api.send("writeToAppFile", `visualizer/scripts/${name}`, msg);
+    window.api.send("writeToFile", `${autoSavePath}/autos/scripts/${name}`, msg);
+    window.api.send("writeToAppFile", `../build/visualizer/scripts/${name}`, msg);
     createAuto();
-    window.api.send("scpFile", `/deploy/scripts/${name}`, `/scripts/${name}`);
+    window.api.send("scpFile", `${autoSavePath}/autos/scripts/${name}`, `/scripts/${name}`);
     setRefreshAutos((prev) => !prev);
   }
   return (
@@ -59,7 +59,7 @@ function AutoPlanner({onPath, setOnPath}) {
         <AutoFormer onPath={onPath} setOnPath={setOnPath} createAuto={createAuto} name={name} setName={setName} saveAuto={saveAuto} namedAutoList={namedAuto} setNamedAutoList={setNamedAuto} autoList={auto} setAutoList={setAuto}/>
         <PathList setAuto={setAuto} setNamedAuto={setNamedAuto} pathSavePath={autoSavePath}/>
         <ActionList actionlist={["shoot", "prep_shoot", "a_prep_shoot", "deploy_intake", "auto_home"]} auto={auto} setAuto={setAuto} setNamedAuto={setNamedAuto}/>
-        <AutoList setAuto={setAuto} setNamedAuto={setNamedAuto} autoSavePath={autoSavePath} refresh={refreshAutos}/>
+        <AutoList setAuto={setAuto} setNamedAuto={setNamedAuto} autoSavePath={autoSavePath} refresh={refreshAutos} setName={setName}/>
     </div>
   );
 }

@@ -51,7 +51,7 @@ ipcMain.on("writeToFile", (event, file, data) => {
 
 ipcMain.on("removeFileFromApp", (event, filePath) => {
     try {
-        const fullFilePath = path.join(app.getAppPath(), filePath);
+        const fullFilePath = path.join(__dirname, filePath);
         if (fs.existsSync(fullFilePath)) {
             fs.unlinkSync(fullFilePath);
         } else {
@@ -78,7 +78,7 @@ ipcMain.on("removeFile", (event, filePath) => {
 
 ipcMain.on("writeToAppFile", (event, file, data) => {
     try {
-    fs.writeFileSync(path.join(app.getAppPath(), file), data)
+    fs.writeFileSync(path.join(__dirname, file), data)
     } catch (err) {
     console.error('Error writing to file:', err);
     }
@@ -86,7 +86,7 @@ ipcMain.on("writeToAppFile", (event, file, data) => {
 
 ipcMain.on("readFromAppFile", (event, file, data) => {
     try {
-        const data = fs.readFileSync(path.join(app.getAppPath(), file), 'utf8');
+        const data = fs.readFileSync(path.join(__dirname, file), 'utf8');
         win.webContents.send("fileData", data);
     } catch (err) {
         console.error('Error reading file:', err);
@@ -106,7 +106,7 @@ try {
 ipcMain.on("allFilesInDir", (event, folder, data) => {
     try {
         const files=[]
-        fs.readdirSync(path.join(app.getAppPath(), folder)).forEach(file => {
+        fs.readdirSync(path.join(__dirname, folder)).forEach(file => {
             files.push(file)
         });
         win.webContents.send("allFilesInDirData", files);
@@ -119,7 +119,7 @@ ipcMain.on("allFilesInDir", (event, folder, data) => {
 ipcMain.on("allFilesInDir2", (event, folder, data) => {
     try {
         const files=[]
-        fs.readdirSync(path.join(app.getAppPath(), folder)).forEach(file => {
+        fs.readdirSync(path.join(__dirname, folder)).forEach(file => {
             files.push(file)
         });
         win.webContents.send("allFilesInDirData2", files);
@@ -136,8 +136,8 @@ ipcMain.on("scpFile", (event, file1, file2Loc) =>{
         password: '',
       }).then(client => {
         client.uploadFile(
-          path.join(app.getAppPath(), file1),
-          '/home/lvuser/'+file2Loc,
+          file1,
+          '/home/lvuser/deploy/autos'+file2Loc,
         )
               .then(response => {
                 client.close() // remember to close connection after you finish

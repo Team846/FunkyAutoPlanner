@@ -30,7 +30,7 @@ function PathPlanner({ path, setPath }) {
 
   async function savePath() {
     const sleep = ms => new Promise(r => setTimeout(r, ms));
-   window.api.send("readFromAppFile", `SavePath.txt`);
+   window.api.send("readFromAppFile", `../build/SavePath.txt`);
     window.api.receive("fileData", (data) => {
       setPathSavePath(data);
     });
@@ -53,7 +53,7 @@ function PathPlanner({ path, setPath }) {
     if (curPath.length === 1) {
       //This is a point not a path, save in points.lst
       const addendMsg = `N,${name},${percToFieldX(curPath[0].CordX)},${percToFieldY(curPath[0].CordY)},${curPath[0].bearing},${curPath[0].velocity}`;
-      window.api.send("readFromAppFile", "/visualizer/points.lst", "");
+      window.api.send("readFromAppFile", "../build/visualizer/points.lst", "");
       window.api.receive("fileData", (data) => {
         let updatedData = "";
         if (data !== "") {
@@ -67,16 +67,16 @@ function PathPlanner({ path, setPath }) {
         } else {
           updatedData = addendMsg;
         }
-        window.api.send("writeToAppFile", "/visualizer/points.lst", updatedData);
-        window.api.send("writeToFile", `${pathSavePath}/points.lst`, updatedData);
-        window.api.send("scpFile", "/deploy/points.lst", "/points.lst");
+        window.api.send("writeToAppFile", "../build/visualizer/points.lst", updatedData);
+        window.api.send("writeToFile", `${pathSavePath}/autos/points.lst`, updatedData);
+        window.api.send("scpFile", `${pathSavePath}/autos/points.lst`, "/points.lst");
     });
     } else {
-      msg = `P,${percToFieldX(curPath[0].CordX)},${percToFieldY(curPath[0].CordY)},${curPath[0].bearing},${curPath[0].velocity},${additionalText}\n` + msg;
-      window.api.send("writeToFile", `${pathSavePath}/paths/${name}`, msg.substring(0, msg.length - 1));
-      window.api.send("scpFile", `/deploy/paths/${name}`, `/paths/${name}`);
+      const firstNewlineIndex = msg.indexOf("\n");
+      window.api.send("writeToFile", `${pathSavePath}/autos/paths/${name}`, msg.substring(firstNewlineIndex+1, msg.length - 1));
+      window.api.send("scpFile", `${pathSavePath}/autos/paths/${name}`, `/paths/${name}`);
     }
-    window.api.send("writeToAppFile", `/visualizer/paths/${name}`, msg.substring(0, msg.length - 1));
+    window.api.send("writeToAppFile", `../build/visualizer/paths/${name}`, msg.substring(0, msg.length - 1));
     setRefreshPaths((prev) => !prev);
   };
 

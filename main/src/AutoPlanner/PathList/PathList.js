@@ -6,14 +6,14 @@ function PathList({ setAuto, setNamedAuto, pathSavePath }) {
   const [Pathlist, SetPathlist] = useState([]);
 
   useEffect(() => {
-    window.api.send("allFilesInDir", "/visualizer/paths/", "");
+    window.api.send("allFilesInDir", "../build/visualizer/paths/", "");
     window.api.receive("allFilesInDirData", (data) => {
       SetPathlist(data);
     });
   }, []);
 
   const addPath = (name) => {
-    window.api.send("readFromAppFile", `/visualizer/paths/${name}`, "");
+    window.api.send("readFromAppFile", `../build/visualizer/paths/${name}`, "");
     window.api.receive("fileData", (data) => {
       setAuto((prevAuto) => [...prevAuto, parsePathFile(data)]);
       setNamedAuto((prevNamedAuto) => [...prevNamedAuto, name]);
@@ -21,8 +21,8 @@ function PathList({ setAuto, setNamedAuto, pathSavePath }) {
   };
 
   const removePath = (name) => {
-    window.api.send("removeFileFromApp", `/visualizer/paths/${name}`);
-    window.api.send("removeFile", `${pathSavePath}/paths/${name}`);
+    window.api.send("removeFileFromApp", `../build/visualizer/paths/${name}`);
+    window.api.send("removeFile", `${pathSavePath}/autos/paths/${name}`);
     SetPathlist((prevList) => prevList.filter((file) => file !== name));
     };
 

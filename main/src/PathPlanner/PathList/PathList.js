@@ -9,7 +9,7 @@ function PathList({setPath, setName, refresh, pathSavePath}) {
 
     const loadPath =(name) => {
 
-        window.api.send("readFromAppFile", `/visualizer/paths/${name}`, "");
+        window.api.send("readFromAppFile", `../build/visualizer/paths/${name}`, "");
         window.api.receive("fileData", (data) => {
             //console.log(data);
             const newPath = parsePathFile(data);
@@ -20,7 +20,7 @@ function PathList({setPath, setName, refresh, pathSavePath}) {
 
 
     useEffect(() => {
-        window.api.send("allFilesInDir", `/visualizer/paths/`, "");
+        window.api.send("allFilesInDir", `../build/visualizer/paths/`, "");
         window.api.receive("allFilesInDirData", (data) => {
             setPaths(data);
             //console.log(data);
@@ -29,8 +29,8 @@ function PathList({setPath, setName, refresh, pathSavePath}) {
       }, [refresh]);
 
     const removePath = (name) => {
-      window.api.send("removeFileFromApp", `/visualizer/paths/${name}`);
-      window.api.send("removeFile", `${pathSavePath}/paths/${name}`);
+      window.api.send("removeFileFromApp", `../build/visualizer/paths/${name}`);
+      window.api.send("removeFile", `${pathSavePath}/autos/paths/${name}`);
       setPaths((prevList) => prevList.filter((file) => file !== name));
       };
 

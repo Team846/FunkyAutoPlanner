@@ -43,7 +43,7 @@ function Field({listOfPoints, setListOfPoints, onPointClick,}: {listOfPoints: Po
       <img
         onClick={handleFieldClick}
         id="FieldImg"
-        src="/field.png"
+        src="../build/field.png"
       />
       <ul>
         {listOfPoints.map((pnt, i) => (
