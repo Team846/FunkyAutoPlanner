@@ -8,4 +8,6 @@
     border-style: solid;
     border-width: 0.5px;
     border-color: grey;
+    max-height: 15vw;
+    overflow-y: auto;
 }
