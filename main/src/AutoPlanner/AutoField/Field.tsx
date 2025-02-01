@@ -13,7 +13,6 @@ function Field({Auto}: {Auto: ((string | number)[] | PointToBeMade[])[]}) {
     return (
       <div className="Field">
         {Auto.map((value, index) => {
-          console.log(value);
           if ((typeof value[0] == "string") && (typeof prevValue[0]=="string")) {
             lastAction = lastAction + "," + value[0];
           }

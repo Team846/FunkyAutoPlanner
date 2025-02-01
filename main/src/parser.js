@@ -35,18 +35,19 @@ export async function parseAutoFile (msg) {
    const namedList=[];
    const auto=[];
    for (var i=1; i<lines.length; i++){
+      await sleep(1);
       namedList.push(lines.at(i)?.split(',').at(1));
       if (lines.at(i)?.split(',').at(0)=='PATH' || lines.at(i)?.split(',').at(0)=='F' ){         
-         await sleep(1);
+         await sleep(2);
          window.api.send("readFromAppFile", `../build/visualizer/paths/${namedList[i-1]}`, "");
 
          window.api.receive("fileData", (data) => {
             auto.push(parsePathFile(data));
          });
-         await sleep(1);
+         await sleep(3);
       }
       else{
-         await sleep(2);
+         await sleep(4);
          var k=-1
          while (auto.length+k==-1 || typeof auto[auto.length+k][0]== 'string'){
              k--;
@@ -56,6 +57,6 @@ export async function parseAutoFile (msg) {
          auto.push([namedList[i-1], x, y]);
       }
    }
-   await sleep(3);
+   await sleep(5);
    return [namedList, auto]
 }

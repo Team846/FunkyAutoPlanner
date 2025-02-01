@@ -66,7 +66,7 @@ ipcMain.on("removeFileFromApp", (event, filePath) => {
 ipcMain.on("removeFile", (event, filePath) => {
     try {
         const fullFilePath = path.join(filePath);
-        console.log(fullFilePath);
+        //console.log(fullFilePath);
         if (fs.existsSync(fullFilePath)) {
             fs.unlinkSync(fullFilePath);
         } else {
