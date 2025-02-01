@@ -71,3 +71,5 @@ package-lock.json
 /main/deploy/autos/*
 /main/deploy/points.lst
 /main/deploy/scripts/*
+
+.DS_Store

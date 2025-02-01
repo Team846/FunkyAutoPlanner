@@ -1,6 +1,6 @@
 {
   "name": "main",
-  "version": "0.1.0",
+  "version": "2025.1.0",
   "private": true,
   "productName": "FunkyAutoPlanner",
   "main": "public/electron.js",
@@ -58,35 +58,39 @@
   },
   "repository": {
     "type": "git",
-    "url": "{ https://github.com/Team846/FunkyAutoPlanner }"
+    "url": "https://github.com/Team846/FunkyAutoPlanner"
   },
   "build": {
-    "asar": false, 
+    "asar": false,
     "mac": {
       "publish": {
         "provider": "github",
-        "host":  "{ github.com }",
-        "owner": "{ Team846 }",
-        "repo": "{ FunkyAutoPlanner }",
-        "releaseType": "release", 
+        "host": "github.com",
+        "owner": "Team846",
+        "repo": "FunkyAutoPlanner",
+        "releaseType": "release",
         "private": true,
         "token": ""
       },
       "target": {
         "target": "default",
-        "arch": [
-          "x64", "arm64"
+        "arch": ["arm64"
         ]
       }
     },
     "win": {
       "publish": {
         "provider": "github",
-        "host":  "{ github.com }",
-        "owner": "{ Team846 }",
-        "repo": "{ FunkyAutoPlanner }",
-        "releaseType": "release", 
+        "host": "github.com",
+        "owner": "Team846",
+        "repo": "FunkyAutoPlanner",
+        "releaseType": "release",
         "token": ""
+      },
+      "target": {
+        "target": "default",
+        "arch": [
+        ]
       }
     },
     "files": [
@@ -96,10 +100,10 @@
     ],
     "publish": {
       "provider": "github",
-      "host":  "{ github.com }",
-      "owner": "{ Team846 }",
-      "repo": "{ FunkyAutoPlanner }",
-      "releaseType": "release", 
+      "host": "github.com",
+      "owner": "Team846",
+      "repo": "FunkyAutoPlanner",
+      "releaseType": "release",
       "private": true,
       "token": ""
     }

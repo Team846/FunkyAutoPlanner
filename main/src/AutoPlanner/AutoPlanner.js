@@ -58,7 +58,7 @@ function AutoPlanner({onPath, setOnPath}) {
         <SaveToPath text={autoSavePath} setText={setAutoSavePath}/>
         <AutoFormer onPath={onPath} setOnPath={setOnPath} createAuto={createAuto} name={name} setName={setName} saveAuto={saveAuto} namedAutoList={namedAuto} setNamedAutoList={setNamedAuto} autoList={auto} setAutoList={setAuto}/>
         <PathList setAuto={setAuto} setNamedAuto={setNamedAuto} pathSavePath={autoSavePath}/>
-        <ActionList actionlist={["shoot", "prep_shoot", "a_prep_shoot", "deploy_intake", "auto_home"]} auto={auto} setAuto={setAuto} setNamedAuto={setNamedAuto}/>
+        <ActionList actionlist={["lockScoreL4", "lockScoreL3", "lockScoreL2", "lockScoreL1", "intakeAlgaeL3", "intakeAlgaeL2", "scoreProcessor", "scoreNet", "intakePos", "intakePiece", "stow"]} auto={auto} setAuto={setAuto} setNamedAuto={setNamedAuto}/>
         <AutoList setAuto={setAuto} setNamedAuto={setNamedAuto} autoSavePath={autoSavePath} refresh={refreshAutos} setName={setName}/>
     </div>
   );
