@@ -9,7 +9,9 @@ function ActionList({actionlist, auto, setAuto, setNamedAuto} : {actionlist: str
       <div className="ActionList">
         <header className="Action-list-header">ActionList
             {actionlist.map((value, index) => {
-                return(<Action action={value} auto={auto} setAuto={setAuto} setNamedAuto={setNamedAuto}/>)
+                if (value != "") {
+                  return(<Action action={value} auto={auto} setAuto={setAuto} setNamedAuto={setNamedAuto}/>)
+                }
             })
             }
         </header>

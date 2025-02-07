@@ -6,6 +6,7 @@ import AutoList from "./AutoList/AutoList";
 import PathList from "./PathList/PathList";
 import { Dispatch, SetStateAction, useState } from "react";
 import SaveToPath from "./SaveToPath/SaveToPath";
+import ActionAdder from "./ActionAdder/ActionAdder";
 
 function AutoPlanner({onPath, setOnPath}) {
 
@@ -14,6 +15,19 @@ function AutoPlanner({onPath, setOnPath}) {
   const [name, setName] = useState("");
   const [autoSavePath, setAutoSavePath] = useState("");
   const [refreshAutos, setRefreshAutos] = useState(false);
+  const [actionList, setActionList] = useState([]);
+  const [refreshActions, setRefreshActions] = useState(true);
+  
+  if (refreshActions) {
+    window.api.send("readFromAppFile", `../build/visualizer/ActionList.lst`);
+    window.api.receive("fileData", (data) => {
+    console.log("data", data);
+    const newActionlist = data.split(`\n`);
+    setActionList(newActionlist);    
+    });
+    setRefreshActions(false);
+  }
+  
 
   const createAuto =()=>{
     setNamedAuto([]);
@@ -22,7 +36,7 @@ function AutoPlanner({onPath, setOnPath}) {
   }
 
   const saveAuto =()=>{
-    window.api.send("readFromAppFile", `../build/SavePath.txt`);
+    window.api.send("readFromAppFile", `../build/SavePath.lst`);
     window.api.receive("fileData", (data) => {
       setAutoSavePath(data);
     });
@@ -56,9 +70,10 @@ function AutoPlanner({onPath, setOnPath}) {
     <div className="AutoPlanner">
         <Field Auto={auto}/>
         <SaveToPath text={autoSavePath} setText={setAutoSavePath}/>
+        <ActionAdder actionList={actionList} setActionList={setActionList} setRefreshActions={setRefreshActions}/>
         <AutoFormer onPath={onPath} setOnPath={setOnPath} createAuto={createAuto} name={name} setName={setName} saveAuto={saveAuto} namedAutoList={namedAuto} setNamedAutoList={setNamedAuto} autoList={auto} setAutoList={setAuto}/>
         <PathList setAuto={setAuto} setNamedAuto={setNamedAuto} pathSavePath={autoSavePath}/>
-        <ActionList actionlist={["lockScoreL4", "lockScoreL3", "lockScoreL2", "lockScoreL1", "intakeAlgaeL3", "intakeAlgaeL2", "scoreProcessor", "scoreNet", "intakePos", "intakePiece", "stow"]} auto={auto} setAuto={setAuto} setNamedAuto={setNamedAuto}/>
+        <ActionList actionlist={actionList} auto={auto} setAuto={setAuto} setNamedAuto={setNamedAuto}/>
         <AutoList setAuto={setAuto} setNamedAuto={setNamedAuto} autoSavePath={autoSavePath} refresh={refreshAutos} setName={setName}/>
     </div>
   );

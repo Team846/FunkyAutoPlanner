@@ -30,7 +30,7 @@ function PathPlanner({ path, setPath }) {
 
   async function savePath() {
     const sleep = ms => new Promise(r => setTimeout(r, ms));
-   window.api.send("readFromAppFile", `../build/SavePath.txt`);
+   window.api.send("readFromAppFile", `../build/SavePath.l`);
     window.api.receive("fileData", (data) => {
       setPathSavePath(data);
     });

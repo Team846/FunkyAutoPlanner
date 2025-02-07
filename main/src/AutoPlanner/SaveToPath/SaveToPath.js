@@ -1,7 +1,7 @@
 import {React, useState} from "react";
 
 const SaveToPath = ({ text, setText }) => {
-  window.api.send("readFromAppFile", `../build/SavePath.txt`);
+  window.api.send("readFromAppFile", `../build/SavePath.lst`);
     window.api.receive("fileData", (data) => {
       if (data != "") {
         setText(data);
@@ -13,7 +13,7 @@ const SaveToPath = ({ text, setText }) => {
   const handleChange = (event) => {
     if (event && event.target) {
       setText(event.target.value);
-      window.api.send("writeToAppFile", `../build/SavePath.txt`, event.target.value);
+      window.api.send("writeToAppFile", `../build/SavePath.lst`, event.target.value);
       setText(event.target.value);
     }
   };
